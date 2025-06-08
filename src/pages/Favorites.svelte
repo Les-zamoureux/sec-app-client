@@ -2,12 +2,12 @@
     let props = $props()
 </script>
 
-<div class="FAQPage">
-    FAQ
+<div class="FavoritesPage">
+    Favorites
 </div>
 
 <style>
-    .FAQPage{
+    .FavoritesPage{
         width: 100%;
         height: 100%;
     }

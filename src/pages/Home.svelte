@@ -9,7 +9,6 @@
 <div>
     <h1>{$t("home")}</h1>
     <Link to={"/about"}>about</Link>
-    <Button size={'small'} label={'disconnect'} onClick={props.disconnect}/>
 </div>
 
 

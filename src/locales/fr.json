@@ -24,5 +24,10 @@
     "invalidToken":"Modification de mot de passe impossible.",
     "emailSent":"Un email vous a été envoyé à l'adresse renseignée afin de réinitialiser votre mot de passe",
 
+    "shop":"Boutique",
+    "about":"A propos",
+    "faq":"FAQ",
+    "contact":"Contact",
+
     "validate":"Valider"
 }

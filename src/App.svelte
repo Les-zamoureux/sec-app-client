@@ -4,6 +4,13 @@
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
   import Login from "./pages/Login.svelte";
+    import Nav from "./lib/Nav.svelte";
+    import Profile from "./pages/Profile.svelte";
+    import Faq from "./pages/FAQ.svelte";
+    import Contact from "./pages/Contact.svelte";
+    import Shop from "./pages/Shop.svelte";
+    import Favorites from "./pages/Favorites.svelte";
+    import Cart from "./pages/Cart.svelte";
 
   let logged = $state(false)
 
@@ -30,9 +37,16 @@
 <div class="AppContainer">
   <Router url={url}>
     {#if logged}
+      <Nav/>
       <div class="AppContent">
+        <Route path="/profile"><Profile disconnect={disconnect}/></Route>
+        <Route path="/favorites"><Favorites/></Route>
+        <Route path="/cart"><Cart/></Route>
+        <Route path="/contact"><Contact/></Route>
+        <Route path="/faq"><Faq/></Route>
         <Route path="/about"><About/></Route>
-        <Route path="/*"><Home disconnect={disconnect}/></Route>
+        <Route path="/shop"><Shop/></Route>
+        <Route path="/*"><Home/></Route>
       </div>
     {:else}
       <div class="AppContent">

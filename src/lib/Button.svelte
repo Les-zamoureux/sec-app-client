@@ -15,9 +15,12 @@
     }
 </script>
 
-{#if (props.label && props.onClick)}
+{#if ((props.label || props.icon) && props.onClick)}
 <!-- A11y: <div> with click handler must have an ARIA role -->
-<button class={classnames + (props.disabled ? ' disabled' : "") + (hover && !props.disabled ? ' hover' : "")} onclick={()=>onClickButton()} onmouseenter={() => hover = true} onmouseleave={() => hover = false}>
+<button class={classnames + (props.icon && !props.label ? ' iconButton' : "") + (props.nude ? ' nude' : "") + (props.disabled ? ' disabled' : "") + (hover && !props.disabled ? ' hover' : "")} onclick={()=>onClickButton()} onmouseenter={() => hover = true} onmouseleave={() => hover = false}>
+    {#if props.icon}
+    <img src={props.icon} alt="Icon">
+    {/if}
     {#if props.label}
     <Body underline={props.type === 3} hover primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3)}>{$t(props.label)}</Body>
     {/if}
@@ -44,6 +47,27 @@
         &.small{
             width: 160px;
             height: 40px;
+        }
+
+        &.medium{
+            width: 200px;
+            height: 50px;
+        }
+
+        &.nude{
+            border: none;
+        }
+
+        &.iconButton{
+            &.small{
+                width: 40px;
+                height: 40px;
+            }
+
+            &.medium{
+                width: 50px;
+                height: 50px;
+            }
         }
 
         &.type1{

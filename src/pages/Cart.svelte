@@ -2,12 +2,12 @@
     let props = $props()
 </script>
 
-<div class="FAQPage">
-    FAQ
+<div class="CartPage">
+    Cart
 </div>
 
 <style>
-    .FAQPage{
+    .CartPage{
         width: 100%;
         height: 100%;
     }

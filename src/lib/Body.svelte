@@ -11,6 +11,8 @@
     (props.underline ? ' underline' : "") + 
     (props.error ? ' error' : "") + 
     (props.success ? ' primary' : "") +
+    (props.uppercase ? ' uppercase' : "") +
+    (props.large ? ' large' : "") +
     (props.hover ? ' hover' : "")
 }>
     {@render props.children?.()}
@@ -34,6 +36,16 @@
         font-size: 14px;
         transition: all .2s;
 
+        &.large{
+            font-size: 16px;
+        }
+
+        &.hover{
+            &:hover{
+                color: rgb(153, 153, 153);
+            }
+        }
+
         &.primary{
             color: var(--primary);
 
@@ -50,6 +62,10 @@
 
         &.error{
             color: var(--red-100);
+        }
+
+        &.uppercase{
+            text-transform: uppercase;
         }
     }
 </style>
