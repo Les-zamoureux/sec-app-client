@@ -6,10 +6,13 @@
     if(props.size) classnames += ' ' + props.size
 </script>
 
-<p class={classnames + (props.primary ? ' primary' : "") + (props.underline ? ' underline' : "") + (props.error ? ' error' : "")}>
+<p class={classnames + (props.primary ? ' primary' : "") + (props.underline ? ' underline' : "") + (props.error ? ' error' : "") + (props.success ? ' primary' : "")}>
     <slot/>
     {#if props.error}
     <em>{$t(props.error)}</em>
+    {/if}
+    {#if props.success}
+    <em>{$t(props.success)}</em>
     {/if}
 </p>
 

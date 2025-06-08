@@ -15,11 +15,13 @@
     }
 </script>
 
+{#if (props.label && props.onClick)}
 <div class={classnames + (props.disabled ? ' disabled' : "") + (hover && !props.disabled ? ' hover' : "")} onclick={onClickButton} onmouseenter={() => hover = true} onmouseleave={() => hover = false}>
     {#if props.label}
     <Body underline={props.type === 3} primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3)}>{$t(props.label)}</Body>
     {/if}
 </div>
+{/if}
 
 <style lang="scss">
     .Button{

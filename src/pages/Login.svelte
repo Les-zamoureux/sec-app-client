@@ -7,6 +7,8 @@
     import {t} from 'svelte-intl-precompile'
     import Input from '../lib/Input.svelte';
     import Button from '../lib/Button.svelte';
+    import Body from '../lib/Body.svelte';
+    import { emailCheck } from '../utils/helpers';
     
 	let props = $props();
 
@@ -16,6 +18,7 @@
     let confirmPassword = $state("")
 
     let submitError = $state({})
+    let submitSuccess = $state({})
 
     let currentPage = $state("login")
 
@@ -41,10 +44,16 @@
                     navigate('/signin')
                 }
                 break
-            case "forgotpassword":
-                if(currentPage !== "forgotpassword"){
-                    currentPage = "forgotpassword"
-                    navigate('/forgotpassword')
+            case "forgot-password":
+                if(currentPage !== "forgotPassword"){
+                    currentPage = "forgotPassword"
+                    navigate('/forgot-password')
+                }
+                break
+            case "change-password":
+                if(!props.token) navigate('/')
+                if(currentPage !== "changePassword"){
+                    currentPage = "changePassword"
                 }
                 break
             default :
@@ -58,7 +67,10 @@
             submitError = {}
         }else{
             submitError = {"loginError":true}
-            console.log("LOGIN", email, password)
+            //REQUEST
+            window.localStorage.setItem('authToken', "TOKEN")
+            props.setLogged(true)
+            navigate('/')
         }
     }
 
@@ -70,7 +82,32 @@
         
         if(Object.keys(submitError).length === 0){
             submitError = {}
-            console.log("SIGNIN", username, email, password, confirmPassword, username === "username")
+            //REQUEST
+            window.localStorage.setItem('authToken', "TOKEN")
+            props.setLogged(true)
+            navigate('/')
+        }
+    }
+
+    const onPasswordRequested = () => {
+        if(email && email === "email"){
+            submitError["emailDoesntExist"] = true
+        }else{
+            submitError = {}
+            //REQUEST
+            submitSuccess = {'emailSent' : true}
+        }
+    }
+
+    const onChangePassword = () => {
+        if(!password || !confirmPassword || (password && confirmPassword && password !== confirmPassword)){
+            submitError["passwordError"] = true
+        }else if(props.token === "existepas"){
+            submitError["invalidToken"] = true
+        }else{
+            submitError = {}
+            //REQUEST
+            navigate('/')
         }
     }
 
@@ -86,8 +123,8 @@
             case "signin":
                 navigate('/signin')
                 break
-            case "forgotpassword":
-                navigate('/forgotpassword')
+            case "forgotPassword":
+                navigate('/forgot-password')
                 break
             default :
                 navigate('/')
@@ -117,7 +154,7 @@
             </div>
             <div class="FormField">
                 <Button type={3} label={"noAccount"} onClick={()=>onSwitchPage("signin")}/>
-                <div style="margin-top:10px"><Button type={3} label={"forgottenPassword"} onClick={()=>onSwitchPage("forgotpassword")}/></div>
+                <div style="margin-top:10px"><Button type={3} label={"forgottenPassword"} onClick={()=>onSwitchPage("forgotPassword")}/></div>
             </div>
         </div>
         {:else if currentPage === "signin"}
@@ -138,13 +175,52 @@
                 <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'passwordError' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'confirmPassword'}/>
             </div>
             <div class="FormField" style="margin-top:30px">
-                <Button type={1} size={"small"} disabled={email === "" || password === "" || username === "" || confirmPassword === ""} label={"validate"} onClick={()=>onSignIn()}/>
+                <Button type={1} size={"small"} disabled={(email === "" || !emailCheck(email)) || password === "" || username === "" || confirmPassword === ""} label={"validate"} onClick={()=>onSignIn()}/>
             </div>
             <div class="FormField">
                 <Button type={3} label={"alreadyAccount"} onClick={()=>onSwitchPage("login")}/>
             </div>
         </div>
-        {:else if currentPage === "forgotpassword"}
+        {:else if currentPage === "forgotPassword"}
+        <div class="FormContent">
+            <div class="FormTitle">
+                <Heading size="h2">{$t("forgotPassword")}</Heading>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onPasswordRequested()} error={submitError["emailDoesntExist"] ? 'emailDoesntExist' : null} value={email} type={email} onChange={(val) => email = val} title={'email'}/>
+            </div>
+            <div class="FormField" style="margin-top:30px">
+                <Button type={1} size={"small"} disabled={email === "" || !emailCheck(email)} label={"validate"} onClick={()=>onPasswordRequested()}/>
+            </div>
+            <div class="FormField">
+                <Button type={3} label={"alreadyAccount"} onClick={()=>onSwitchPage("login")}/>
+            </div>
+            {#if submitSuccess["emailSent"]}
+            <div class="FormField">
+                <Body success={'emailSent'}/>
+            </div>
+            {/if}
+        </div>
+        {:else if currentPage === "changePassword"}
+        <div class="FormContent">
+            <div class="FormTitle">
+                <Heading size="h2">{$t("changePassword")}</Heading>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'passwordError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'passwordError' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'confirmPassword'}/>
+            </div>
+            <div class="FormField" style="margin-top:30px">
+                <Button type={1} size={"small"} disabled={password === '' || confirmPassword === ''} label={"validate"} onClick={()=>onChangePassword()}/>
+            </div>
+            {#if submitError["invalidToken"]}
+            <div class="FormField">
+                <Body error={'invalidToken'}/>
+            </div>
+            {/if}
+        </div>
         {/if}
     </div>
 </div>
@@ -152,7 +228,7 @@
 <style lang="scss">
     .LoginPage{
         width: 100%;
-        height: 100%;
+        min-height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -172,10 +248,15 @@
                 justify-content: center;
                 padding: 40px 0;
                 flex-grow: 0;
+
+                img{
+                    pointer-events: none;
+                }
             }
 
             .FormContent{
                 padding: 40px;
+                padding-top: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -188,8 +269,34 @@
 
                 .FormField{
                     width: 100%;
-                    margin-top: 20px;
+                    margin-top: 15px;
                 }
+            }
+        }
+
+        @media screen and (max-width:600px){
+            .FormContainer{
+                width: 100vw;
+                border-radius: 0;
+                overflow-y: auto;
+                // height: 100vh;
+                min-height: 100vh;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    @media screen and (max-height:760px){
+        .LoginPage{
+            .FormContainer{
+                width: 100vw;
+                border-radius: 0;
+                overflow-y: auto;
+                // height: 100vh;
+                min-height: 100vh;
+                align-items: center;
+                justify-content: center;
             }
         }
     }

@@ -18,6 +18,11 @@
     "signinError":"Création du compte impossible",
     "emailAlreadyUse":"Cet email est déjà utilisée",
     "usernameAlreadyUse":"Cet identifiant est déjà utilisée",
+    "emailDoesntExist":"Cet email est associé à aucun compte",
+    "forgotPassword":"Mot de pase oublié",
+    "changePassword":"Nouveau mot de passe",
+    "invalidToken":"Modification de mot de passe impossible.",
+    "emailSent":"Un email vous a été envoyé à l'adresse renseignée afin de réinitialiser votre mot de passe",
 
     "validate":"Valider"
 }

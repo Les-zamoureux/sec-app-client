@@ -11,6 +11,18 @@
     logged = _logged
   }
 
+  $effect(()=>{
+    if(!logged){
+      let authToken = window.localStorage.getItem('authToken')
+      if(authToken) setLogged(true)
+    }
+  })
+
+  const disconnect = () => {
+    window.localStorage.removeItem('authToken')
+    setLogged(false)
+  }
+
   let url = "";
 </script>
 
@@ -20,12 +32,13 @@
     {#if logged}
       <div class="AppContent">
         <Route path="/about"><About/></Route>
-        <Route path="/"><Home/></Route>
+        <Route path="/*"><Home disconnect={disconnect}/></Route>
       </div>
     {:else}
       <div class="AppContent">
-        <Route path="/"><Login setLogged={setLogged} logged={logged}/></Route>
+        <Route path="/*"><Login setLogged={setLogged} logged={logged}/></Route>
         <Route path="/:page" let:params><Login params={params.page} setLogged={setLogged} logged={logged}/></Route>
+        <Route path="/:page/:token" let:params><Login params={params.page} token={params.token} setLogged={setLogged} logged={logged}/></Route>
       </div>
     {/if}
   </Router>
