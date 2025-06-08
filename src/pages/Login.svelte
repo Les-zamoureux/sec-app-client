@@ -10,13 +10,16 @@
     
 	let props = $props();
 
+    let username = $state("")
     let email = $state("")
     let password = $state("")
+    let confirmPassword = $state("")
+
+    let submitError = $state({})
 
     let currentPage = $state("login")
 
     $effect(() => {
-        console.log(props.params)
         //ROUTING
         
         switch(props.params){
@@ -51,10 +54,31 @@
 	});
 
     const onLogin = () => {
-        console.log("oui", email, password)
+        if(email === "email" && password === "password"){
+            submitError = {}
+        }else{
+            submitError = {"loginError":true}
+            console.log("LOGIN", email, password)
+        }
+    }
+
+    const onSignIn = () => {
+        submitError = {}
+        if(password && confirmPassword && password !== confirmPassword) submitError["passwordError"] = true
+        if(email && email === "email") submitError["emailAlreadyUse"] = true
+        if(username && username === "username") submitError["usernameAlreadyUse"] = true
+        
+        if(Object.keys(submitError).length === 0){
+            submitError = {}
+            console.log("SIGNIN", username, email, password, confirmPassword, username === "username")
+        }
     }
 
     const onSwitchPage = (page) => {
+        email = ''
+        password = ''
+        confirmPassword = ''
+        username = ''
         switch(page){
             case "login":
                 navigate('/')
@@ -77,15 +101,16 @@
         <div class="FormHeader">
             <img src={LogoSvg}/>
         </div>
+        {#if currentPage === "login"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h2">{$t("connection")}</Heading>
+                <Heading size="h2">{$t("login")}</Heading>
             </div>
             <div class="FormField">
-                <Input value={email} onChange={(val) => email = val} title={'emailOrUsername'}/>
+                <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'loginError' : null} value={email} onChange={(val) => email = val} title={'emailOrUsername'}/>
             </div>
             <div class="FormField">
-                <Input value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
+                <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'loginError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
             </div>
             <div class="FormField" style="margin-top:30px">
                 <Button type={1} size={"small"} disabled={email === "" || password === ""} label={"validate"} onClick={()=>onLogin()}/>
@@ -95,6 +120,32 @@
                 <div style="margin-top:10px"><Button type={3} label={"forgottenPassword"} onClick={()=>onSwitchPage("forgotpassword")}/></div>
             </div>
         </div>
+        {:else if currentPage === "signin"}
+        <div class="FormContent">
+            <div class="FormTitle">
+                <Heading size="h2">{$t("signin")}</Heading>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onSignIn()} error={submitError['usernameAlreadyUse'] ? 'usernameAlreadyUse' : null} value={username} onChange={(val) => username = val} title={'username'}/>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onSignIn()} error={submitError["emailAlreadyUse"] ? 'emailAlreadyUse' : null} value={email} type={email} onChange={(val) => email = val} title={'email'}/>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'passwordError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
+            </div>
+            <div class="FormField">
+                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'passwordError' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'confirmPassword'}/>
+            </div>
+            <div class="FormField" style="margin-top:30px">
+                <Button type={1} size={"small"} disabled={email === "" || password === "" || username === "" || confirmPassword === ""} label={"validate"} onClick={()=>onSignIn()}/>
+            </div>
+            <div class="FormField">
+                <Button type={3} label={"alreadyAccount"} onClick={()=>onSwitchPage("login")}/>
+            </div>
+        </div>
+        {:else if currentPage === "forgotpassword"}
+        {/if}
     </div>
 </div>
 

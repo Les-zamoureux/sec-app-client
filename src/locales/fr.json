@@ -3,11 +3,21 @@
     "home":"Accueil",
 
     "connection":"Connexion",
-    "emailOrUsername":"Adresse mail ou pseudo :",
+    "emailOrUsername":"Adresse mail ou identifiant :",
+    "email":"Adresse email :",
+    "username":"Identifiant :",
     "password":"Mot de passe :",
+    "confirmPassword":"Confirmer le mot de passe :",
     "login":"se connecter",
+    "signin":"s'inscrire",
+    "alreadyAccount":"Vous avez déjà un compte ? Se connecter",
     "noAccount":"Vous n’avez pas de compte ? S’inscrire",
     "forgottenPassword":"J’ai oublié mon mot de passe",
+    "loginError":"Identifiant ou mot de passe invalide.",
+    "passwordError":"Les mots de passe sont différents",
+    "signinError":"Création du compte impossible",
+    "emailAlreadyUse":"Cet email est déjà utilisée",
+    "usernameAlreadyUse":"Cet identifiant est déjà utilisée",
 
     "validate":"Valider"
 }

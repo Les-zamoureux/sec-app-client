@@ -8,15 +8,19 @@
     const onChangeValue = (e) => {
         if(props.onChange) props.onChange(e.target.value)
     }
+
+    const onKeyPress = (e) => {
+        if(e.code === "Enter" && props.onEnterPress) props.onEnterPress()
+    }
 </script>
 
-<div class="InputContainer">
+<div class={"InputContainer" + (props.error ? ' error' : "")}>
     {#if props.title}
     <div class="InputTitle">
-        <Body>{$t(props.title)}</Body>
+        <Body error={props.error}>{$t(props.title)}</Body>
     </div>
     {/if}
-    <input value={props.value} type={props.type ? props.type : "text"} on:input={onChangeValue}/>
+    <input value={props.value} type={props.type ? props.type : "text"} on:keypress={onKeyPress} on:input={onChangeValue}/>
 </div>
 
 <style lang="scss">
@@ -39,6 +43,13 @@
             &:focus{
                 background-color: #464646;
                 border: 2px solid var(--neutral500);
+            }
+        }
+
+        &.error{
+            input{
+                // color: var(--red-100);
+                border-color: var(--red-100);
             }
         }
     }
