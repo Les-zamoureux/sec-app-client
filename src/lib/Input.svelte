@@ -20,7 +20,7 @@
         <Body error={props.error}>{$t(props.title)}</Body>
     </div>
     {/if}
-    <input value={props.value} type={props.type ? props.type : "text"} on:keypress={onKeyPress} on:input={onChangeValue}/>
+    <input value={props.value} type={props.type ? props.type : "text"} onkeypress={onKeyPress} oninput={onChangeValue}/>
 </div>
 
 <style lang="scss">

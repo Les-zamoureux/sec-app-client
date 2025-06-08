@@ -136,7 +136,7 @@
 <div class="LoginPage">
     <div class="FormContainer">
         <div class="FormHeader">
-            <img src={LogoSvg}/>
+            <img src={LogoSvg} alt="Logo"/>
         </div>
         {#if currentPage === "login"}
         <div class="FormContent">
