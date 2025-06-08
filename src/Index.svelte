@@ -22,6 +22,5 @@
 </script>
 
 <main>
-    <p>{$t('myWeed')}</p>
     <App/>
 </main>

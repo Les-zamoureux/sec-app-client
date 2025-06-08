@@ -1,4 +1,13 @@
 {
     "myWeed":"Ma Weed",
-    "home":"Accueil"
+    "home":"Accueil",
+
+    "connection":"Connexion",
+    "emailOrUsername":"Adresse mail ou pseudo :",
+    "password":"Mot de passe :",
+    "login":"se connecter",
+    "noAccount":"Vous n’avez pas de compte ? S’inscrire",
+    "forgottenPassword":"J’ai oublié mon mot de passe",
+
+    "validate":"Valider"
 }

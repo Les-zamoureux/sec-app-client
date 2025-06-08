@@ -9,7 +9,7 @@
 </div>
 
 
-<style>
+<style lang="scss">
     h1{
         font-size: 65px;
     }
