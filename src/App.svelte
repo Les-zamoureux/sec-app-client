@@ -62,9 +62,12 @@
   .AppContainer{
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow-x: hidden;
     background-color: var(--neutral0);
 
     .AppContent{
+      z-index: 1;
       width: 100%;
       height: 100%;
     }

@@ -42,7 +42,7 @@
 
         &.hover{
             &:hover{
-                color: rgb(153, 153, 153);
+                color: var(--primary-hover);
             }
         }
 

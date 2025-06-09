@@ -22,7 +22,7 @@
     <img src={props.icon} alt="Icon">
     {/if}
     {#if props.label}
-    <Body underline={props.type === 3} hover primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3)}>{$t(props.label)}</Body>
+    <Body underline={props.type === 3} hover={props.type === 3} primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3)}>{$t(props.label)}</Body>
     {/if}
 </button>
 {/if}
@@ -56,17 +56,35 @@
 
         &.nude{
             border: none;
+
+            &.hover{
+                background-color: transparent;
+            }
         }
 
         &.iconButton{
             &.small{
                 width: 40px;
                 height: 40px;
+                padding: 10px;
+
+                img{
+                    width: 100%;
+                }
             }
 
             &.medium{
                 width: 50px;
                 height: 50px;
+                padding: 10px;
+
+                img{
+                    width: 100%;
+                }
+            }
+
+            img{
+                pointer-events: none;
             }
         }
 
