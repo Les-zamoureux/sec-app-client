@@ -19,7 +19,7 @@
 <!-- A11y: <div> with click handler must have an ARIA role -->
 <button class={classnames + (props.icon && !props.label ? ' iconButton' : "") + (props.nude ? ' nude' : "") + (props.disabled ? ' disabled' : "") + (hover && !props.disabled ? ' hover' : "")} onclick={()=>onClickButton()} onmouseenter={() => hover = true} onmouseleave={() => hover = false}>
     {#if props.icon}
-    <img src={props.icon} alt="Icon">
+    <img src={props.iconHover && hover ? props.iconHover : props.icon} alt="Icon">
     {/if}
     {#if props.label}
     <Body underline={props.type === 3} hover={props.type === 3} primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3)}>{$t(props.label)}</Body>
@@ -93,6 +93,12 @@
 
             &.hover{
                 background-color: var(--primary);
+            }
+
+            &.iconButton{
+                &.hover{
+                    background-color: transparent;
+                }
             }
         }
 

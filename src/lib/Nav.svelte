@@ -4,8 +4,13 @@
     import ProfileIcon from './../assets/person.svg'
     import CartIcon from './../assets/cart.svg'
     import LikeIcon from './../assets/heart.svg'
+    import ProfileIconPrimary from './../assets/person-primary.svg'
+    import CartIconPrimary from './../assets/cart-primary.svg'
+    import LikeIconPrimary from './../assets/heart-primary.svg'
     import BurgerIcon from './../assets/burger.svg'
     import CrossIcon from './../assets/cross.svg'
+    import BurgerIconPrimary from './../assets/burger-primary.svg'
+    import CrossIconPrimary from './../assets/cross-primary.svg'
     import Body from './Body.svelte';
     import { t } from 'svelte-intl-precompile';
     import Button from './Button.svelte';
@@ -47,11 +52,11 @@
 
 <nav>
     <div class="navContainer">
-        <div class="Logo" onclick={()=>{onNavigate("home", '/')}}>
+        <button class="Logo" onclick={()=>{onNavigate("home", '/')}}>
             <img src={Logo} alt="Logo">
-        </div>
-        <div class="burgerIcon" onclick={()=>{open=!open}}>
-            <img src={BurgerIcon} alt="Burger Icon">
+        </button>
+        <div class="burgerIcon">
+            <Button size={"medium"} nude icon={BurgerIcon} iconHover={BurgerIconPrimary} onClick={()=>{open=!open}}/>
         </div>
     </div>
     <div class={"Options" + (open ? " open" : "") + (noTransition ? " noTransition" : "")}>
@@ -65,12 +70,12 @@
         </button>
         {/each}
         <div class="icons">
-            <Button size={"small"} nude icon={LikeIcon} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
-            <Button size={"small"} nude icon={CartIcon} onClick={()=>{onNavigate("cart", '/cart')}}/>
-            <Button size={"small"} nude icon={ProfileIcon} onClick={()=>{onNavigate("profile", '/profile')}}/>
+            <Button size={"small"} nude icon={LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
+            <Button size={"small"} nude icon={CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
+            <Button size={"small"} nude icon={ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>
         </div>
-        <div class="closeIcon" onclick={()=>{open=!open}}>
-            <img src={CrossIcon} alt="Close Icon">
+        <div class="closeIcon">
+            <Button size={"medium"} nude icon={CrossIcon} iconHover={CrossIconPrimary} onClick={()=>{open=!open}}/>
         </div>    
     </div>
 </nav>
@@ -89,25 +94,22 @@
             display: none;
             
             .burgerIcon{
-                width: 32px;
                 position: absolute;
-                right: 30px;
                 top: 50%;
                 transform: translateY(-50%);
                 height: 32px;
+                right: 30px;
                 cursor: pointer;
                 display: none;
                 align-items: center;
                 justify-content: center;
-
-                img{
-                    width: 100%;
-                }
             }
 
             .Logo{
                 height: 80px;
                 display: none;
+                background-color: transparent;
+                border: none;
                 position: absolute;
                 left: 20px;
                 top: 50%;
@@ -130,19 +132,13 @@
             width: 100%;
 
             .closeIcon{
-                width: 46px;
                 position: absolute;
                 cursor: pointer;
                 right: 10px;
                 top: 30px;
-                height: 46px;
                 display: none;
                 align-items: center;
                 justify-content: center;
-
-                img{
-                    width: 100%;
-                }
             }
 
             .icons{
