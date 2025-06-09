@@ -2,7 +2,7 @@
     let props = $props()
 
     let classname = $state("Heading")
-    if(props.caca) classname += ' ' + props.caca
+    if(props.right) classname += ' right'
 </script>
 
 {#if props.size === "h2"}
@@ -27,5 +27,9 @@
         font-family: "Bungee", sans-serif;
         font-weight: 400;
         font-style: normal;
+
+        &.right{
+            text-align: right;
+        }
     }
 </style>

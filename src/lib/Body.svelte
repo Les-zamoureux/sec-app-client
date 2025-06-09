@@ -13,6 +13,7 @@
     (props.success ? ' primary' : "") +
     (props.uppercase ? ' uppercase' : "") +
     (props.large ? ' large' : "") +
+    (props.right ? ' right' : "") +
     (props.hover ? ' hover' : "")
 }>
     {@render props.children?.()}
@@ -38,6 +39,10 @@
 
         &.large{
             font-size: 16px;
+        }
+
+        &.right{
+            text-align: right;
         }
 
         &.hover{

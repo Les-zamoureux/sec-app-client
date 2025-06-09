@@ -32,7 +32,7 @@
 
     const onNavigate = (page, link) => {
         open = false
-        currentPage = page
+        props.setCurrentPage(page)
         navigate(link)
     }
 
@@ -40,7 +40,6 @@
 
 <svelte:window
     onresize={(e)=>{
-        console.log("iui")
         clearTimeout(timeout)
         noTransition = true
         if(open) open = false
@@ -65,7 +64,7 @@
             {#if option.image}
                 <img src={option.image} alt="Logo">
             {:else if option.name}
-                <Body large primary={currentPage === option.name} uppercase hover>{$t(option.name)}</Body>
+                <Body large primary={props.currentPage === option.name} uppercase hover>{$t(option.name)}</Body>
             {/if}
         </button>
         {/each}
@@ -86,6 +85,7 @@
         height: 120px;
         z-index: 100;
         overflow: hidden;
+        position: relative;
 
         .navContainer{
             height: 100%;

@@ -4,18 +4,24 @@
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
   import Login from "./pages/Login.svelte";
-    import Nav from "./lib/Nav.svelte";
-    import Profile from "./pages/Profile.svelte";
-    import Faq from "./pages/FAQ.svelte";
-    import Contact from "./pages/Contact.svelte";
-    import Shop from "./pages/Shop.svelte";
-    import Favorites from "./pages/Favorites.svelte";
-    import Cart from "./pages/Cart.svelte";
+  import Nav from "./lib/Nav.svelte";
+  import Profile from "./pages/Profile.svelte";
+  import Faq from "./pages/FAQ.svelte";
+  import Contact from "./pages/Contact.svelte";
+  import Shop from "./pages/Shop.svelte";
+  import Favorites from "./pages/Favorites.svelte";
+  import Cart from "./pages/Cart.svelte";
 
   let logged = $state(false)
 
   const setLogged = (_logged) => {
     logged = _logged
+  }
+
+  let currentPage = $state("home")
+
+  const setCurrentPage = (_currentPage) => {
+    currentPage = _currentPage
   }
 
   $effect(()=>{
@@ -37,7 +43,7 @@
 <div class="AppContainer">
   <Router url={url}>
     {#if logged}
-      <Nav/>
+      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       <div class="AppContent">
         <Route path="/profile"><Profile disconnect={disconnect}/></Route>
         <Route path="/favorites"><Favorites/></Route>
@@ -46,7 +52,7 @@
         <Route path="/faq"><Faq/></Route>
         <Route path="/about"><About/></Route>
         <Route path="/shop"><Shop/></Route>
-        <Route path="/*"><Home/></Route>
+        <Route path="/*"><Home setCurrentPage={setCurrentPage}/></Route>
       </div>
     {:else}
       <div class="AppContent">
@@ -69,7 +75,9 @@
     .AppContent{
       z-index: 1;
       width: 100%;
-      height: 100%;
+      position: absolute;
+      top: 0;
+      min-height: 100%;
     }
   }
 </style>
