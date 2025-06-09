@@ -129,6 +129,96 @@
                     }
                 }
             }
+            
+            @media screen and (max-width:1300px){
+                .HomeContent{
+                    .Logo{
+                        width: 550px;
+                    }
+                }
+            }
+
+            @media screen and (max-width:1024px){
+                .HomeContent{
+                    .ContentItems{
+                        .ContentItem{
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width:800px){
+                .HomeContent{
+                    .HomeBackground{
+                        height: 500px;
+                    }
+                    .Logo{
+                        height: 300px;
+                    }
+                }
+            }
+
+            @media screen and (max-width:550px){
+                .HomeContent{
+                    .HomeBackground{
+                        height: 350px;
+                    }
+                    .Logo{
+                        height: 200px;
+                    }
+                }
+            }
+
+            @media screen and (max-width:385px){
+                .HomeContent{
+                    .HomeBackground{
+                        height: 300px;
+                    }
+                    .Logo{
+                        height: 175px;
+                    }
+                }
+            }
+
+            @media screen and (max-height:850px) and (min-width:800px){
+                .HomeContent{
+                    .ContentItems{
+                        .ContentItem{
+                            display: none;
+                        }
+                    }
+                    .HomeBackground{
+                        height: 500px;
+                    }
+                    .Logo{
+                        height: 300px;
+                    }
+                }
+            }
+
+            @media screen and (max-height:650px) and (min-width:550px){
+                .HomeContent{
+                    height: 100%;
+                    .HomeBackground{
+                        height: 350px;
+                    }
+                    .Logo{
+                        height: 200px;
+                    }
+                }
+            }
+
+            @media screen and (max-height:500px){
+                .HomeContent{
+                    .HomeBackground{
+                        height: 300px;
+                    }
+                    .Logo{
+                        height: 175px;
+                    }
+                }
+            }
         }
     }
 </style>
