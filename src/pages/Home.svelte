@@ -22,7 +22,6 @@
                     <Heading>{$t('shop')}</Heading>
                     <Body uppercase>{$t('shopDescription')}</Body>
                 </div>
-
                 <div class="ContentItem" onclick={()=>{onSwitchPage('about')}}>
                     <Heading>{$t('about')}</Heading>
                     <Body uppercase>{$t('aboutDescription')}</Body>
@@ -43,7 +42,6 @@
                     <Heading right>{$t('faq')}</Heading>
                     <Body right uppercase>{$t('faqDescription')}</Body>
                 </div>
-
                 <div class="ContentItem" onclick={()=>{onSwitchPage('contact')}}>
                     <Heading right>{$t('contact')}</Heading>
                     <Body right uppercase>{$t('contactDescription')}</Body>
