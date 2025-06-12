@@ -14,6 +14,8 @@
     (props.uppercase ? ' uppercase' : "") +
     (props.large ? ' large' : "") +
     (props.right ? ' right' : "") +
+    (props.center ? ' center' : "") +
+    ' ' + (props.weight || 'medium') +
     (props.hover ? ' hover' : "")
 }>
     {@render props.children?.()}
@@ -65,12 +67,48 @@
             text-decoration: underline;
         }
 
+        &.center{
+            text-align: center;
+        }
+
         &.error{
             color: var(--red-100);
         }
 
         &.uppercase{
             text-transform: uppercase;
+        }
+
+        &.thin{
+            font-weight: 100;
+        }
+
+        &.extraLight{
+            font-weight: 200;
+        }
+
+        &.light{
+            font-weight: 300;
+        }
+
+        &.medium{
+            font-weight: 400;
+        }
+
+        &.regular{
+            font-weight: 500;
+        }
+
+        &.semiBold{
+            font-weight: 600;
+        }
+
+        &.bold{
+            font-weight: 700;
+        }
+
+        &.extreBold{
+            font-weight: 800;
         }
     }
 </style>

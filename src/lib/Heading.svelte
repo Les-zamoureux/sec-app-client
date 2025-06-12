@@ -60,5 +60,65 @@
         &.h6{
             font-size: 20px;
         }
+
+        @media screen and (max-width:1024px){
+            &.h0{
+                font-size: 48px;
+            }
+
+            &.h1{
+                font-size: 36px;
+            }
+
+            &.h2{
+                font-size: 28px;
+            }
+
+            &.h3{
+                font-size: 24px;
+            }
+
+            &.h4{
+                font-size: 20px;
+            }
+
+            &.h5{
+                font-size: 20px;
+            }
+
+            &.h6{
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width:650px){
+            &.h0{
+                font-size: 40px;
+            }
+
+            &.h1{
+                font-size: 32px;
+            }
+
+            &.h2{
+                font-size: 26px;
+            }
+
+            &.h3{
+                font-size: 22px;
+            }
+
+            &.h4{
+                font-size: 20px;
+            }
+
+            &.h5{
+                font-size: 18px;
+            }
+
+            &.h6{
+                font-size: 16px;
+            }
+        }
     }
 </style>
