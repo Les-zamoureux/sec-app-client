@@ -3,6 +3,7 @@
 
     let classname = $state("Heading")
     if(props.right) classname += ' right'
+    classname += props.size ? " " + props.size : ' h1'
 </script>
 
 {#if props.size === "h2"}
@@ -30,6 +31,14 @@
 
         &.right{
             text-align: right;
+        }
+
+        &.h0{
+            font-size: 75px;
+        }
+
+        &.h1{
+            font-size: 48px;
         }
     }
 </style>

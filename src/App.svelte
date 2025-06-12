@@ -11,6 +11,7 @@
   import Shop from "./pages/Shop.svelte";
   import Favorites from "./pages/Favorites.svelte";
   import Cart from "./pages/Cart.svelte";
+    import Product from "./pages/Product.svelte";
 
   let logged = $state(false)
 
@@ -52,6 +53,7 @@
         <Route path="/faq"><Faq/></Route>
         <Route path="/about"><About/></Route>
         <Route path="/shop"><Shop/></Route>
+        <Route path="/shop/:id" let:params><Product id={params.id}/></Route>
         <Route path="/*"><Home setCurrentPage={setCurrentPage}/></Route>
       </div>
     {:else}
