@@ -1,4 +1,5 @@
 <script>
+    import Footer from "./Footer.svelte";
     import Heading from "./Heading.svelte";
     import { t } from "svelte-intl-precompile";
 
@@ -13,6 +14,9 @@
     </div>
     <div class="PageContent">
         {@render props.children?.()}
+    </div>
+    <div class="PageFooter">
+        <Footer center/>
     </div>
 </div>
 
@@ -31,11 +35,28 @@
         }
 
         .PageContent{
-            padding: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 40px;
             width: 80%;
+            flex-direction: column;
+        }
+    }
+
+    @media screen and (max-width:1024px){
+        .page{
+            padding: 0;
+            
+            .PageHeader, .PageContent{
+                width: 100%;
+                padding: 40px;
+                margin-top: 0;
+            }
+            
+            .PageContent{
+                padding-top: 0;
+            }
         }
     }
 </style>

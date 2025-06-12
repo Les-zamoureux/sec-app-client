@@ -1,10 +1,10 @@
 import X3Image from './../assets/products/3x.png'
-import DryImage from './../assets/products/dry.webp'
-import FrozenImage from './../assets/products/frozen.webp'
-import GelatoImage from './../assets/products/gelato.png'
+import DryImage from './../assets/products/dry.png'
+import FrozenImage from './../assets/products/frozen.png'
+import GelatoImage from './../assets/products/gelato.webp'
 import PurpleImage from './../assets/products/purple.png'
 import ShitImage from './../assets/products/shit.png'
-import HazeImage from './../assets/products/haze.webp'
+import HazeImage from './../assets/products/haze.png'
 
 let products = [
     {
@@ -183,3 +183,5 @@ let products = [
         "idealFor": ["Débutants", "Usage en journée", "Mix tabac/cannabis", "Amateurs de produits naturels"]
     }
 ]
+
+export default products

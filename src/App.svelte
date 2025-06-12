@@ -11,7 +11,7 @@
   import Shop from "./pages/Shop.svelte";
   import Favorites from "./pages/Favorites.svelte";
   import Cart from "./pages/Cart.svelte";
-    import Product from "./pages/Product.svelte";
+  import Product from "./pages/Product.svelte";
 
   let logged = $state(false)
 
@@ -41,8 +41,8 @@
 </script>
 
 
-<div class="AppContainer">
-  <Router url={url}>
+<Router url={url}>
+  <div class="AppContainer">
     {#if logged}
       <Nav currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       <div class="AppContent">
@@ -63,8 +63,8 @@
         <Route path="/:page/:token" let:params><Login params={params.page} token={params.token} setLogged={setLogged} logged={logged}/></Route>
       </div>
     {/if}
-  </Router>
-</div>
+  </div>
+</Router> 
 
 <style lang="scss">
   .AppContainer{
