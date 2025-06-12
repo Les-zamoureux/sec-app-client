@@ -19,11 +19,11 @@
         <div class="HomeContent">
             <div class="ContentItems">
                 <div class="ContentItem" onclick={()=>{onSwitchPage('shop')}}>
-                    <Heading>{$t('shop')}</Heading>
+                    <Heading size={'h2'}>{$t('shop')}</Heading>
                     <Body uppercase>{$t('shopDescription')}</Body>
                 </div>
                 <div class="ContentItem" onclick={()=>{onSwitchPage('about')}}>
-                    <Heading>{$t('about')}</Heading>
+                    <Heading size={'h2'}>{$t('about')}</Heading>
                     <Body uppercase>{$t('aboutDescription')}</Body>
                 </div>
             </div>
@@ -39,11 +39,11 @@
         <div class="HomeContent">
             <div class="ContentItems right">
                 <div class="ContentItem" onclick={()=>{onSwitchPage('faq')}}>
-                    <Heading right>{$t('faq')}</Heading>
+                    <Heading size={'h2'} right>{$t('faq')}</Heading>
                     <Body right uppercase>{$t('faqDescription')}</Body>
                 </div>
                 <div class="ContentItem" onclick={()=>{onSwitchPage('contact')}}>
-                    <Heading right>{$t('contact')}</Heading>
+                    <Heading size={'h2'} right>{$t('contact')}</Heading>
                     <Body right uppercase>{$t('contactDescription')}</Body>
                 </div>
             </div>

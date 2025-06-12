@@ -40,5 +40,25 @@
         &.h1{
             font-size: 48px;
         }
+
+        &.h2{
+            font-size: 36px;
+        }
+
+        &.h3{
+            font-size: 28px;
+        }
+
+        &.h4{
+            font-size: 24px;
+        }
+
+        &.h5{
+            font-size: 22px;
+        }
+
+        &.h6{
+            font-size: 20px;
+        }
     }
 </style>

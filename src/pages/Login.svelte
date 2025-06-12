@@ -64,9 +64,9 @@
 
     const onLogin = () => {
         if(email === "email" && password === "password"){
-            submitError = {}
-        }else{
             submitError = {"loginError":true}
+        }else{
+            submitError = {}
             //REQUEST
             window.localStorage.setItem('authToken', "TOKEN")
             props.setLogged(true)
@@ -141,7 +141,7 @@
         {#if currentPage === "login"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h2">{$t("login")}</Heading>
+                <Heading size="h3">{$t("login")}</Heading>
             </div>
             <div class="FormField">
                 <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'loginError' : null} value={email} onChange={(val) => email = val} title={'emailOrUsername'}/>
@@ -160,7 +160,7 @@
         {:else if currentPage === "signin"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h2">{$t("signin")}</Heading>
+                <Heading size="h3">{$t("signin")}</Heading>
             </div>
             <div class="FormField">
                 <Input onEnterPress={()=>onSignIn()} error={submitError['usernameAlreadyUse'] ? 'usernameAlreadyUse' : null} value={username} onChange={(val) => username = val} title={'username'}/>
@@ -184,7 +184,7 @@
         {:else if currentPage === "forgotPassword"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h2">{$t("forgotPassword")}</Heading>
+                <Heading size="h3">{$t("forgotPassword")}</Heading>
             </div>
             <div class="FormField">
                 <Input onEnterPress={()=>onPasswordRequested()} error={submitError["emailDoesntExist"] ? 'emailDoesntExist' : null} value={email} type={email} onChange={(val) => email = val} title={'email'}/>
@@ -204,7 +204,7 @@
         {:else if currentPage === "changePassword"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h2">{$t("changePassword")}</Heading>
+                <Heading size="h3">{$t("changePassword")}</Heading>
             </div>
             <div class="FormField">
                 <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'passwordError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
