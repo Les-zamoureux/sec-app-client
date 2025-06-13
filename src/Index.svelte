@@ -1,5 +1,5 @@
 <script>
-    import App from "./App.svelte"
+    import Router from "./Router.svelte"
     import { locale, t, addMessages, init } from 'svelte-intl-precompile';
   
     import en from './locales/en.json';
@@ -22,5 +22,5 @@
 </script>
 
 <main>
-    <App/>
+    <Router/>
 </main>

@@ -24,7 +24,6 @@
         {name:"contact", link:"/contact"}
     ]
 
-    let currentPage = $state('home')
     let open = $state(false)
     let noTransition = $state(false)
 
@@ -69,9 +68,14 @@
         </button>
         {/each}
         <div class="icons">
-            <Button size={"small"} nude icon={LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
-            <Button size={"small"} nude icon={CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
-            <Button size={"small"} nude icon={ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>
+            {#if props.logged}
+                <Button size={"small"} nude icon={LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
+                <Button size={"small"} nude icon={CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
+                <Button size={"small"} nude icon={ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>
+            {:else}
+                <Button type={2} size={'small'} label={'login'} onClick={()=>onNavigate('login', '/login')}/>
+            {/if}
+            
         </div>
         <div class="closeIcon">
             <Button size={"medium"} nude icon={CrossIcon} iconHover={CrossIconPrimary} onClick={()=>{open=!open}}/>

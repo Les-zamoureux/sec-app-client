@@ -20,48 +20,6 @@
     let submitError = $state({})
     let submitSuccess = $state({})
 
-    let currentPage = $state("login")
-
-    $effect(() => {
-        //ROUTING
-        
-        switch(props.params){
-            case "":
-                if(currentPage !== "login"){
-                    currentPage = "login"
-                    navigate('/')
-                }
-                break
-            case "login":
-                if(currentPage !== "login"){
-                    currentPage = "login"
-                    navigate('/')
-                }
-                break
-            case "signin":
-                if(currentPage !== "signin"){
-                    currentPage = "signin"
-                    navigate('/signin')
-                }
-                break
-            case "forgot-password":
-                if(currentPage !== "forgotPassword"){
-                    currentPage = "forgotPassword"
-                    navigate('/forgot-password')
-                }
-                break
-            case "change-password":
-                if(!props.token) navigate('/')
-                if(currentPage !== "changePassword"){
-                    currentPage = "changePassword"
-                }
-                break
-            default :
-                navigate('/')
-                break
-        }
-	});
-
     const onLogin = () => {
         if(email === "email" && password === "password"){
             submitError = {"loginError":true}
@@ -118,10 +76,10 @@
         username = ''
         switch(page){
             case "login":
-                navigate('/')
+                navigate('/login')
                 break
             case "signin":
-                navigate('/signin')
+                navigate('/sign-in')
                 break
             case "forgotPassword":
                 navigate('/forgot-password')
@@ -136,9 +94,11 @@
 <div class="LoginPage">
     <div class="FormContainer">
         <div class="FormHeader">
-            <img src={LogoSvg} alt="Logo"/>
+            <div class={'FormLogo'} onclick={onSwitchPage}>
+                <img src={LogoSvg} alt="Logo"/>
+            </div>
         </div>
-        {#if currentPage === "login"}
+        {#if props.currentPage === "login"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("login")}</Heading>
@@ -157,7 +117,7 @@
                 <div style="margin-top:10px"><Button type={3} label={"forgottenPassword"} onClick={()=>onSwitchPage("forgotPassword")}/></div>
             </div>
         </div>
-        {:else if currentPage === "signin"}
+        {:else if props.currentPage === "signin"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("signin")}</Heading>
@@ -181,7 +141,7 @@
                 <Button type={3} label={"alreadyAccount"} onClick={()=>onSwitchPage("login")}/>
             </div>
         </div>
-        {:else if currentPage === "forgotPassword"}
+        {:else if props.currentPage === "forgotPassword"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("forgotPassword")}</Heading>
@@ -201,7 +161,7 @@
             </div>
             {/if}
         </div>
-        {:else if currentPage === "changePassword"}
+        {:else if props.currentPage === "changePassword"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("changePassword")}</Heading>
@@ -249,8 +209,18 @@
                 padding: 40px 0;
                 flex-grow: 0;
 
-                img{
-                    pointer-events: none;
+                .FormLogo{
+                    width: 125px;
+                    height: 125px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img{
+                        pointer-events: none;
+                        width: 100%;
+                    }
                 }
             }
 
