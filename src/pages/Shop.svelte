@@ -5,8 +5,13 @@
     import Page from "../lib/Page.svelte";
     import { t } from "svelte-intl-precompile";
     import products from "../data/products";
+    import { navigate } from "svelte-routing";
 
     let props = $props()
+
+    const onNavigate = (product) => {
+        navigate('/shop/' + product.id)
+    }
 </script>
 
 <div class="ShopPage">
@@ -20,7 +25,7 @@
                     <Body size={'large'} weight={'light'} uppercase>{$t("popularProducts")}</Body>
                 </div>
                 <div class="ShopContentList">
-                    <List data={products && products.length > 0 ? products.filter((p) => p.star) : []}/>
+                    <List onItemClick={onNavigate} data={products && products.length > 0 ? products.filter((p) => p.star) : []}/>
                 </div>
             </div>
             <div class="ShopContent" style="margin-top: 60px;">

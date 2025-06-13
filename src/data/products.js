@@ -8,6 +8,7 @@ import HazeImage from './../assets/products/haze.png'
 
 let products = [
     {
+        "id":0,
         "name":"3x filtré",
         "genetics":"Méthode moderne par extraction à l’eau glacée",
         "category":"extraction Ice-o-lator",
@@ -33,6 +34,7 @@ let products = [
         "idealFor":["Consommateurs expérimentés", "Soirées calmes", "Recherche de pureté et puissance"],
     },
     {
+        "id":1,
         "name": "Amnesia Haze",
         "genetics": "Haze × (Afghan × Hawaiian × Thai × Jamaican)",
         "category": "Fleur de cannabis",
@@ -58,6 +60,7 @@ let products = [
         "idealFor": ["Utilisation en journée", "Activités créatives", "Sorties sociales", "Combattre la fatigue ou le stress"]
     },
     {
+        "id":2,
         "name": "Gelato",
         "genetics": "Sunset Sherbet × Thin Mint Girl Scout Cookies",
         "category": "Fleur de cannabis",
@@ -83,6 +86,7 @@ let products = [
         "idealFor": ["Moments de détente", "Fin de journée", "Réduire l’anxiété", "Amateurs de saveurs sucrées"]
     },
     {
+        "id":3,
         "name": "Shit Classique",
         "genetics": "Résine extraite des trichomes de cannabis marocain",
         "category": "Résine traditionnelle",
@@ -108,6 +112,7 @@ let products = [
         "idealFor": ["Débutants", "Utilisation en journée", "Petit budget", "Ambiance chill"]
     },
     {
+        "id":4,
         "name": "Buckeye Purple",
         "genetics": "Granddaddy Purple × Unknown Hybrid",
         "category": "Fleur de cannabis",
@@ -133,6 +138,7 @@ let products = [
         "idealFor": ["Fin de journée", "Soulager le stress", "Insomnie", "Chiller en intérieur"]
     },
     {
+        "id":5,
         "name": "Frozen Hash",
         "genetics": "Extraction sur fleurs fraîches congelées (Fresh Frozen)",
         "category": "Résine moderne",
@@ -158,6 +164,7 @@ let products = [
         "idealFor": ["Connaisseurs", "Dabbing", "Sessions pures", "Soirées tranquilles ou créatives"]
     },
     {
+        "id":6,
         "name": "Dry Sift",
         "genetics": "Extraction mécanique à sec des trichomes",
         "category": "Résine traditionnelle",

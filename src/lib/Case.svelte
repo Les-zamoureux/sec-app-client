@@ -4,11 +4,15 @@
     import Stars from "./Stars.svelte";
 
     let props = $props()
+
+    const onClick = () => {
+        if(props.onClick) props.onClick()
+    }
 </script>
 
-<div class="Case">
+<div class="Case" onclick={onClick}>
     <div class="CaseBackground">
-        <div class="opacity"/>
+        <div class="opacity"></div>
         <div class="imageBackground" style={"background-image: url(" + props?.data?.image + ")"}>
             <!-- <img src={props?.data?.image} alt="Case image"> -->
         </div>

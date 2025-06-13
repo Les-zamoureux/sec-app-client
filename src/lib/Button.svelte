@@ -22,7 +22,7 @@
     <img src={props.iconHover && hover ? props.iconHover : props.icon} alt="Icon">
     {/if}
     {#if props.label}
-    <Body underline={props.type === 3} hover={props.type === 3} primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3)}>{$t(props.label)}</Body>
+    <Body underline={props.type === 3} hover={props.type === 3} primary={(props.type === 1 || !props.type) && (!hover || (hover && props.disabled)) || (props.type === 3) || (props.type === 2 && hover && !props.disabled)}>{$t(props.label)}</Body>
     {/if}
 </button>
 {/if}
@@ -104,6 +104,10 @@
 
         &.type2{
             border-color: white;
+
+            &.hover{
+                border-color: var(--primary);
+            }
         }
 
         &.type3{
