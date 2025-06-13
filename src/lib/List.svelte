@@ -2,11 +2,15 @@
     import Case from "./Case.svelte";
 
     let props = $props()
+
+    let onItemClick = (item) => {
+        if(props.onItemClick) props.onItemClick(item)
+    }
 </script>
 
 <div class="List">
     {#each props.data as item}
-        <Case data={item}/>
+        <Case data={item} onClick={() => onItemClick(item)}/>
     {/each}
 </div>
 

@@ -1,5 +1,5 @@
 <script>
-  import { Router, Route } from "svelte-routing";
+  import { Router, Route, useLocation } from "svelte-routing";
 
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
@@ -19,17 +19,21 @@
     logged = _logged
   }
 
-  let currentPage = $state("home")
+  let currentPage = $state("")
 
   const setCurrentPage = (_currentPage) => {
     currentPage = _currentPage
   }
+
+  const location = useLocation()
 
   $effect(()=>{
     if(!logged){
       let authToken = window.localStorage.getItem('authToken')
       if(authToken) setLogged(true)
     }
+
+    console.log(location)
   })
 
   const disconnect = () => {
