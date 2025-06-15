@@ -103,9 +103,16 @@
                         margin-bottom: 20px;
                     }
 
+                    @media screen and (max-width:625px) {
+                        .FilterSearch{
+                            width: 100%;
+                        }
+                    }
+
                     .FilterTags{
                         display: flex;
                         gap: 10px;
+                        flex-wrap: wrap;
 
                         .Tag{
                             border: 2px solid var(--neutral500);

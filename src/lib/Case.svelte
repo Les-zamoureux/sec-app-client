@@ -42,8 +42,8 @@
         position: relative;
     
         &:hover{
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 20px rgba(30, 175, 42, 0.15));
+            transform: scale(1.02);
+            filter: drop-shadow(0 0 10px rgba(80, 80, 80, 0.15));
         }
 
         .CaseBackground{
@@ -64,6 +64,10 @@
 
             .imageBackground{
                 display: flex;
+                position: absolute;
+                top: 0;
+                left: 0;
+                filter:  drop-shadow(0 0 15px rgb(70, 70, 70));
                 align-items: center;
                 justify-content: center;
                 width: 100%;
