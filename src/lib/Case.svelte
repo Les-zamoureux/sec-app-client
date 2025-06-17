@@ -2,6 +2,7 @@
     import Body from "./Body.svelte";
     import Heading from "./Heading.svelte";
     import Stars from "./Stars.svelte";
+    import { t } from "svelte-intl-precompile";
 
     let props = $props()
 
@@ -19,7 +20,7 @@
     </div>
     <div class="CaseContent">
         <div class="CaseType">
-            <Body size={'small'} weight={'light'} uppercase>{props?.data?.type}</Body>
+            <Body size={'small'} weight={'light'} uppercase>{$t("shop.filters." + props.data.type)}</Body>
         </div>
         <div class="CaseName">
             <Body size={'large'}>{props?.data?.name}</Body>

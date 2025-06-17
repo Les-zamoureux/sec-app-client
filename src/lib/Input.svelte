@@ -1,6 +1,8 @@
 <script>
     import Body from "./Body.svelte";
     import SearchIcon from "./../assets/search.svg"
+    import UpIcon from "./../assets/chevron-up.svg"
+    import DownIcon from "./../assets/chevron-down.svg"
 
     import {t} from "svelte-intl-precompile"
 
@@ -15,6 +17,20 @@
     const onKeyPress = (e) => {
         if(e.code === "Enter" && props.onEnterPress) props.onEnterPress()
     }
+
+    const plus = () => {
+        let newValue = Number(props.value) +1
+        if((props.max != null && newValue <= props.max) || props.max == null){
+            props.onChange(newValue)
+        }
+    }
+
+    const minus = () => {
+        let newValue = Number(props.value) -1
+        if((props.min != null && newValue >= props.min) || props.min == null){
+            props.onChange(newValue)
+        }
+    }
 </script>
 
 <div class={"InputContainer"}>
@@ -23,11 +39,22 @@
         <Body error={props.error}>{$t(props.title)}</Body>
     </div>
     {/if}
-    <div class={"InputContent" + (props.error ? ' error' : "") + (focus ? ' focus' : "") + (props.type == 'search' ? ' search' : "")}>
+    <div class={"InputContent" + (props.error ? ' error' : "") + (focus ? ' focus' : "") + (props.type == 'search' ? ' search' : "") + (props.type == 'number' ? ' number' : "")}>
         <input value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} type={props.type ? props.type : "text"} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}/>
         {#if props.type === "search"}
             <div class="SearchIcon">
                 <img src={SearchIcon} alt="Search icon">
+            </div>
+        {/if}
+
+        {#if props.type === "number"}
+            <div class="controls">
+                <button class={"control top" + (props.max != null && props.value >= props.max ? " disabled":"")} disabled={props.max != null && props.value >= props.max} onclick={()=>{plus()}}>
+                    <img src={UpIcon} alt="Up icon">
+                </button>
+                <button class={"control bottom" + (props.min != null && props.value <= props.min ? " disabled":"")} disabled={props.min != null && props.value <= props.min} onclick={()=>{minus()}}>
+                    <img src={DownIcon} alt="Down icon">
+                </button>
             </div>
         {/if}
     </div>
@@ -36,6 +63,7 @@
 <style lang="scss">
     .InputContainer{
         width: 100%;
+        
         .InputTitle{
             margin-bottom: 8px;
         }
@@ -53,6 +81,10 @@
             &.focus{
                 background-color: var(--neutral150);
             }
+
+            &.error{
+                border-color: var(--red100);
+            }
         
             &.search{
                 input{
@@ -68,6 +100,24 @@
                         margin-left: 0px;
                         opacity: 0;
                     }
+                }
+            }
+
+            &.number{
+                input{
+                    width: calc(100% - 80px);
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                /* Firefox */
+                input[type=number] {
+                    -moz-appearance: textfield;
+                    appearance: textfield;
                 }
             }
         
@@ -89,6 +139,55 @@
                     pointer-events: none;
                 }
             }
+
+            .controls{
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 60px;
+                display: flex;
+                border-bottom-right-radius: 12px;
+                border-top-right-radius: 12px;
+                flex-direction: column;
+
+                .control{
+                    flex-grow: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    cursor: pointer;
+                    background-color: transparent;
+                    transition: all .3s;
+
+                    &.disabled{
+                        opacity: .2;
+                        cursor: default;
+
+                        &:hover{
+                            background-color: transparent;
+                        }
+                    }
+
+                    &:hover{
+                        background-color: var(--neutral150);
+                    }
+
+                    &.top{
+                        border-top-right-radius: 12px;
+                    }
+
+                    &.bottom{
+                        border-bottom-right-radius: 12px;
+                    }
+
+                    img{
+                        width: 20px;
+                        pointer-events: none;
+                    }
+                }
+            }
         
             input{
                 width: 100%;
@@ -102,10 +201,6 @@
                 transition: all .2s;
                 border: none;
                 text-decoration: none;
-        
-                &.error{
-                    border: 2px solid var(--red100);
-                }
 
                 &:focus{
                     width: 100%;

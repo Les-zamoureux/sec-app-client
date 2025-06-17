@@ -39,14 +39,14 @@
 </script>
 
 <div class="ShopPage">
-    <Page title="shop">
+    <Page title="nav.shop">
         <div class="ShopContainer">
             <div class="ShopTitle">
-                <Heading size={'h6'}>{$t("slogan")}</Heading>
+                <Heading size={'h6'}>{$t("shop.slogan")}</Heading>
             </div>
             <div class="ShopContent">
                 <div class="ShopContentDescription">
-                    <Body size={'large'} weight={'light'} uppercase>{$t("popularProducts")}</Body>
+                    <Body size={'large'} weight={'light'} uppercase>{$t("shop.popular-products")}</Body>
                 </div>
                 <div class="ShopContentList">
                     <List onItemClick={onNavigate} data={products && products.length > 0 ? products.filter((p) => p.star) : []}/>
@@ -54,19 +54,19 @@
             </div>
             <div class="ShopContent" style="margin-bottom: 100px;">
                 <div class="ShopContentTitle">
-                    <Heading size={'h5'}>{$t("products")}</Heading>
+                    <Heading size={'h5'}>{$t("shop.products")}</Heading>
                 </div>
                 <div class="ShopContentDescription">
-                    <Body size={'large'} weight={'light'} uppercase>{$t("productsDescription")}</Body>
+                    <Body size={'large'} weight={'light'} uppercase>{$t("shop.products-description")}</Body>
                 </div>
                 <div class="ShopContentFilters">
                     <div class="FilterSearch">
-                        <Input placeholder={"searchProduct"} type={"search"} value={search} onChange={(e) => search = e}/>
+                        <Input placeholder={"shop.search-product"} type={"search"} value={search} onChange={(e) => search = e}/>
                     </div>
                     <div class="FilterTags">
                         {#each tags as tag}
                             <div class={"Tag" + (tagFilter.find(f => f === tag) ? ' selected' : '') + (tagHover === tag ? ' hover' : "")} onmouseenter={()=>{tagHover = tag}} onmouseleave={()=>{tagHover = null}} onclick={()=>{onTagClick(tag)}}>
-                                <Body primary={tagHover === tag || tagFilter.find(f => f === tag)} center>{$t(tag)}</Body>
+                                <Body primary={tagHover === tag || tagFilter.find(f => f === tag)} center>{$t("shop.filters." + tag)}</Body>
                             </div>
                         {/each}
                     </div>

@@ -1,4 +1,7 @@
 {
-    "myWeed":"My Weed",
-    "home":"Home"
+    "my-weed":"My Weed",
+    
+    "nav":{
+        "home":"Home"
+    }
 }

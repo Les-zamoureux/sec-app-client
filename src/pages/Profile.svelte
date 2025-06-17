@@ -7,7 +7,7 @@
 
 <div class="ProfilePage">
     <Page title={"profile"}>
-        <Button size={'small'} label={'disconnect'} onClick={props.disconnect}/>
+        <Button size={'small'} label={'commons.disconnect'} onClick={props.disconnect}/>
     </Page>
 </div>
 

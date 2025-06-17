@@ -101,59 +101,59 @@
         {#if props.currentPage === "login"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h3">{$t("login")}</Heading>
+                <Heading size="h3">{$t("login.title")}</Heading>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'loginError' : null} value={email} onChange={(val) => email = val} title={'emailOrUsername'}/>
+                <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'login.error' : null} value={email} onChange={(val) => email = val} title={'login.email-or-username'}/>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'loginError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
+                <Input onEnterPress={()=>onLogin()} error={submitError['loginError'] ? 'login.error' : null} value={password} type={"password"} onChange={(val) => password = val} title={'login.password-field'}/>
             </div>
             <div class="FormField" style="margin-top:30px">
-                <Button type={1} size={"small"} disabled={email === "" || password === ""} label={"validate"} onClick={()=>onLogin()}/>
+                <Button type={1} size={"small"} disabled={email === "" || password === ""} label={"commons.validate"} onClick={()=>onLogin()}/>
             </div>
             <div class="FormField">
-                <Button type={3} label={"noAccount"} onClick={()=>onSwitchPage("signin")}/>
-                <div style="margin-top:10px"><Button type={3} label={"forgottenPassword"} onClick={()=>onSwitchPage("forgotPassword")}/></div>
+                <Button type={3} label={"login.no-account"} onClick={()=>onSwitchPage("signin")}/>
+                <div style="margin-top:10px"><Button type={3} label={"login.forgotten-password"} onClick={()=>onSwitchPage("forgotPassword")}/></div>
             </div>
         </div>
-        {:else if props.currentPage === "signin"}
+        {:else if props.currentPage === "signIn"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h3">{$t("signin")}</Heading>
+                <Heading size="h3">{$t("sign-in.title")}</Heading>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onSignIn()} error={submitError['usernameAlreadyUse'] ? 'usernameAlreadyUse' : null} value={username} onChange={(val) => username = val} title={'username'}/>
+                <Input onEnterPress={()=>onSignIn()} error={submitError['usernameAlreadyUse'] ? 'sign-in.username-already-use' : null} value={username} onChange={(val) => username = val} title={'sign-in.username-field'}/>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onSignIn()} error={submitError["emailAlreadyUse"] ? 'emailAlreadyUse' : null} value={email} type={email} onChange={(val) => email = val} title={'email'}/>
+                <Input onEnterPress={()=>onSignIn()} error={submitError["emailAlreadyUse"] ? 'sign-in.email-already-use' : null} value={email} type={email} onChange={(val) => email = val} title={'sign-in.email-field'}/>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'passwordError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
+                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'sign-in.password-error' : null} value={password} type={"password"} onChange={(val) => password = val} title={'login.password-field'}/>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'passwordError' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'confirmPassword'}/>
+                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'sign-in.password-error' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'sign-in.confirm-password-field'}/>
             </div>
             <div class="FormField" style="margin-top:30px">
-                <Button type={1} size={"small"} disabled={(email === "" || !emailCheck(email)) || password === "" || username === "" || confirmPassword === ""} label={"validate"} onClick={()=>onSignIn()}/>
+                <Button type={1} size={"small"} disabled={(email === "" || !emailCheck(email)) || password === "" || username === "" || confirmPassword === ""} label={"commons.validate"} onClick={()=>onSignIn()}/>
             </div>
             <div class="FormField">
-                <Button type={3} label={"alreadyAccount"} onClick={()=>onSwitchPage("login")}/>
+                <Button type={3} label={"sign-in.already-account"} onClick={()=>onSwitchPage("login")}/>
             </div>
         </div>
         {:else if props.currentPage === "forgotPassword"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h3">{$t("forgotPassword")}</Heading>
+                <Heading size="h3">{$t("forgot-password.title")}</Heading>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onPasswordRequested()} error={submitError["emailDoesntExist"] ? 'emailDoesntExist' : null} value={email} type={email} onChange={(val) => email = val} title={'email'}/>
+                <Input onEnterPress={()=>onPasswordRequested()} error={submitError["emailDoesntExist"] ? 'forgot-password.error' : null} value={email} type={email} onChange={(val) => email = val} title={'sign-in.email-field'}/>
             </div>
             <div class="FormField" style="margin-top:30px">
-                <Button type={1} size={"small"} disabled={email === "" || !emailCheck(email)} label={"validate"} onClick={()=>onPasswordRequested()}/>
+                <Button type={1} size={"small"} disabled={email === "" || !emailCheck(email)} label={"commons.validate"} onClick={()=>onPasswordRequested()}/>
             </div>
             <div class="FormField">
-                <Button type={3} label={"alreadyAccount"} onClick={()=>onSwitchPage("login")}/>
+                <Button type={3} label={"sign-in.already-account"} onClick={()=>onSwitchPage("login")}/>
             </div>
             {#if submitSuccess["emailSent"]}
             <div class="FormField">
@@ -164,16 +164,16 @@
         {:else if props.currentPage === "changePassword"}
         <div class="FormContent">
             <div class="FormTitle">
-                <Heading size="h3">{$t("changePassword")}</Heading>
+                <Heading size="h3">{$t("change-password.title")}</Heading>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'passwordError' : null} value={password} type={"password"} onChange={(val) => password = val} title={'password'}/>
+                <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'sign-in.password-error' : null} value={password} type={"password"} onChange={(val) => password = val} title={'login.password-field'}/>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'passwordError' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'confirmPassword'}/>
+                <Input onEnterPress={()=>onChangePassword()} error={submitError["passwordError"] ? 'sign-in.password-error' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'sign-in.confirm-password-field'}/>
             </div>
             <div class="FormField" style="margin-top:30px">
-                <Button type={1} size={"small"} disabled={password === '' || confirmPassword === ''} label={"validate"} onClick={()=>onChangePassword()}/>
+                <Button type={1} size={"small"} disabled={password === '' || confirmPassword === ''} label={"commons.validate"} onClick={()=>onChangePassword()}/>
             </div>
             {#if submitError["invalidToken"]}
             <div class="FormField">

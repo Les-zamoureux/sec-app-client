@@ -25,6 +25,9 @@
     {#if props.success}
     <em>{$t(props.success)}</em>
     {/if}
+    {#if props.span}
+    <span>{$t(props.span)}</span>
+    {/if}
 </p>
 
 <style lang="scss">
@@ -38,6 +41,18 @@
         font-variation-settings: "wdth" 100;
         font-size: 14px;
         transition: all .2s;
+
+        span{
+            font-size: 12px;
+            font-weight: 400;
+            height: 100%;
+            color: white;
+            margin-left: 5px;
+        }
+
+        &.veryLarge{
+            font-size: 18px;
+        }
 
         &.large{
             font-size: 16px;
@@ -72,7 +87,7 @@
         }
 
         &.error{
-            color: var(--red-100);
+            color: var(--red100);
         }
 
         &.uppercase{

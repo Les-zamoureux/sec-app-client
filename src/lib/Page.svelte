@@ -16,7 +16,7 @@
         {@render props.children?.()}
     </div>
     <div class="PageFooter">
-        <Footer center/>
+        <Footer/>
     </div>
 </div>
 

@@ -5,7 +5,7 @@
 </script>
 
 <div class="Footer">
-    <Body center>{$t('footerCopyrights')}</Body>
+    <Body center>{$t('footer.copyrights')}</Body>
 </div>
 
 <style lang="scss">
