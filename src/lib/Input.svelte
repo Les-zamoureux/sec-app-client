@@ -39,8 +39,12 @@
         <Body error={props.error}>{$t(props.title)}</Body>
     </div>
     {/if}
-    <div class={"InputContent" + (props.error ? ' error' : "") + (focus ? ' focus' : "") + (props.type == 'search' ? ' search' : "") + (props.type == 'number' ? ' number' : "")}>
-        <input value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} type={props.type ? props.type : "text"} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}/>
+    <div class={"InputContent" + (props.error ? ' error' : "") + (focus ? ' focus' : "") + (props.type == 'search' ? ' search' : "") + (props.type == 'textarea' ? ' textarea' : "") + (props.type == 'number' ? ' number' : "")}>
+        {#if props.type === 'textarea'}
+            <textarea class="input" value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}></textarea>
+        {:else} <input class="input" value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} type={props.type ? props.type : "text"} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}/>
+        {/if}
+        
         {#if props.type === "search"}
             <div class="SearchIcon">
                 <img src={SearchIcon} alt="Search icon">
@@ -78,6 +82,12 @@
             border-radius: 15px;
             transition: all .2s;
 
+            &.textarea{
+                height: 350px;
+                min-height: 350px;
+                max-height: 350px;
+            }
+
             &.focus{
                 background-color: var(--neutral150);
             }
@@ -104,18 +114,18 @@
             }
 
             &.number{
-                input{
+                .input{
                     width: calc(100% - 80px);
                 }
 
-                input::-webkit-outer-spin-button,
-                input::-webkit-inner-spin-button {
+                .input::-webkit-outer-spin-button,
+                .input::-webkit-inner-spin-button {
                     -webkit-appearance: none;
                     margin: 0;
                 }
 
                 /* Firefox */
-                input[type=number] {
+                .input[type=number] {
                     -moz-appearance: textfield;
                     appearance: textfield;
                 }
@@ -188,8 +198,8 @@
                     }
                 }
             }
-        
-            input{
+
+            .input{
                 width: 100%;
                 box-sizing: border-box;
                 height: 100%;
@@ -215,13 +225,13 @@
             }
 
             @media screen and (max-width : 1100px){
-                input{
+                .input{
                     font-size: 14px;
                 }
             }
 
             @media screen and (max-width : 650px){
-                input{
+                .input{
                     font-size: 12px;
                 }
             }

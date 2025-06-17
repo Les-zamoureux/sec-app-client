@@ -1,8 +1,8 @@
 {
-    "my-weed":"Ma Weed",
+    "my-weed":"My Weed",
 
     "login":{
-        "title":"Se connecter",
+        "title":"Login",
         "email-or-username":"Adresse mail ou identifiant :",
         "password-field":"Mot de passe :",
         "no-account":"Vous n’avez pas de compte ? S’inscrire",
@@ -74,7 +74,7 @@
 
     "product":{
         "type":"{type} - {category}",
-        "price":" {price} €",
+        "price": "{price} €",
         "unity":"/ gramme",
         "price-with-unity":"({price}€ / gramme)",
         "thc":"{count} {count, plural, =0 {THC : < 1%} other {THC : {count}%}}",

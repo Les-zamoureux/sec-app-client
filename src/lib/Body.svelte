@@ -14,6 +14,7 @@
     (props.uppercase ? ' uppercase' : "") +
     (props.large ? ' large' : "") +
     (props.right ? ' right' : "") +
+    (props.justify ? ' justify' : "") +
     (props.center ? ' center' : "") +
     ' ' + (props.weight || 'medium') +
     (props.hover ? ' hover' : "")
@@ -50,6 +51,10 @@
             margin-left: 5px;
         }
 
+        &.huge{
+            font-size: 30px;
+        }
+
         &.veryLarge{
             font-size: 18px;
         }
@@ -60,6 +65,10 @@
 
         &.right{
             text-align: right;
+        }
+
+        &.justify{
+            text-align: justify;
         }
 
         &.hover{
