@@ -20,9 +20,14 @@
     $effect(()=>{
         if(search !== '' || tagFilter.length !== 0){
             filteredData = products.filter((p) => {
-                if(search !== '' && $t(p.name).toLowerCase().includes(search.toLowerCase())) return true
-                if(tagFilter.length !== 0 && tagFilter.find(f => f === p.type || f === p.category)) return true
-                return false
+                let filtered = false
+                if((search !== '' && $t(p.name).toLowerCase().includes(search.toLowerCase())) || search === '') filtered = true
+                else filtered = false
+
+                if(((tagFilter.length !== 0 && tagFilter.find(f => f === p.type || f === p.category)) || tagFilter.length === 0) && filtered) filtered = true
+                else filtered = false
+
+                return filtered
             })
         }else filteredData = products
     })
