@@ -66,4 +66,15 @@
             }
         }
     }
+
+    @media screen and (max-width:650px){
+        .page{
+            &.fullPage{
+                .PageContent{
+                    width: 100%;
+                    padding: 0 20px;
+                }
+            }
+        }
+    }
 </style>

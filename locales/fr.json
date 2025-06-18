@@ -83,6 +83,7 @@
         "buy-now":"Commander maintenant",
         "quantity-in-g":"Quantité (en gramme) :",
         "free-delivery":"Livraison gratuite",
+        "delivered-at":"Livraison prévu avant le {date}",
         "aspects":"Apparance",
         "flavors":"Saveurs",
         "effects":"Effets",

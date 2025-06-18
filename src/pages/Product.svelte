@@ -13,12 +13,14 @@
     let props = $props()
     let data = $state(null)
 
+    let date = new Date()
+    date.setDate(date.getDate() +1)
+
     let quantity = $state(1)
     let rate = $state(1)
     let message = $state("")
 
     $effect(() => {
-        console.log(props.id)
         if(products.length > props.id){
             data = products[props.id]
         }
@@ -51,82 +53,84 @@
             <div></div>
         {:else}
             <div class="ProductContainer">
-                <div class="ProductContent">
-                    <div class="ImageContainer" style={"background-image:url("+data.image+");"}></div>
-                </div>
-                <div class="ProductContent">
-                    <div class="InfosContainer">
-                        <div class="info" style="margin:0px;"><Body uppercase weight={'light'}>{$t('product.type', { values: { category: $t('shop.filters.' + data.category), type: $t('shop.filters.' + data.type) } })}</Body></div>
-                        <div class="info" style="margin-top:0px;"><Heading size={'h0'}>{data.name}</Heading></div>
-                        <div class="info" style="margin-top: 0; margin-bottom:10px"><Body weight={'thin'} size={'large'} uppercase>{data.genetics}</Body></div>
-                        <div class="info" style="margin-top: 15px;"><Stars left rate={data.rate} showRate/></div>
-                        <div class="info" style="margin-bottom: 30px; margin-top:30px;"><Body size={'huge'} weight={'semiBold'} span={'product.unity'}>{$t('product.price', { values: { "price": data.price } })}</Body></div>
-                        <div class="info"><Body>{$t('product.thc', { values: { count: data.thc } })}</Body></div>
-                        <div class="info"><Body>{$t('product.cbd', { values: { count: data.cbd } })}</Body></div>
+                <div class="RowContent">
+                    <div class="ProductContent">
+                        <div class="ImageContainer" style={"background-image:url("+data.image+");"}></div>
                     </div>
-                    <div class="DescriptionContainer">
-                        <div class="DescriptionTitle"><Heading size={'h6'} weight={'bold'}>{$t("commons.description")}</Heading></div>
-                        <div class="DescriptionContent"><Body justify>{data.description}</Body></div>
-                    </div>
-                    <div class="ListContainer">
-                        <div class="List">
-                            <div class="title">
-                                <Heading size={'h6'}>{$t('product.aspects')}</Heading>
-                            </div>
-                            <div class="elements">
-                                {#each data.aspects as aspect}
-                                    <div class="element">
-                                        <div class="Puce">
-                                            <img src={PuceIcon} alt="Puce">
-                                        </div>
-                                        <Body>{$t(aspect)}</Body>
-                                    </div>
-                                {/each}
-                            </div>
+                    <div class="ProductContent">
+                        <div class="InfosContainer">
+                            <div class="info" style="margin:0px;"><Body uppercase weight={'light'}>{$t('product.type', { values: { category: $t('shop.filters.' + data.category), type: $t('shop.filters.' + data.type) } })}</Body></div>
+                            <div class="info" style="margin-top:0px;"><Heading size={'h0'}>{data.name}</Heading></div>
+                            <div class="info" style="margin-top: 0; margin-bottom:10px"><Body weight={'thin'} size={'large'} uppercase>{data.genetics}</Body></div>
+                            <div class="info" style="margin-top: 15px;"><Stars left rate={data.rate} showRate/></div>
+                            <div class="info" style="margin-bottom: 30px; margin-top:30px;"><Body size={'huge'} weight={'semiBold'} span={'product.unity'}>{$t('product.price', { values: { "price": data.price } })}</Body></div>
+                            <div class="info"><Body>{$t('product.thc', { values: { count: data.thc } })}</Body></div>
+                            <div class="info"><Body>{$t('product.cbd', { values: { count: data.cbd } })}</Body></div>
                         </div>
-                        <div class="List">
-                            <div class="title">
-                                <Heading size={'h6'}>{$t('product.flavors')}</Heading>
-                            </div>
-                            <div class="elements">
-                                {#each data.flavors as flavor}
-                                    <div class="element">
-                                        <div class="Puce">
-                                            <img src={PuceIcon} alt="Puce">
-                                        </div>
-                                        <Body>{$t(flavor)}</Body>
-                                    </div>
-                                {/each}
-                            </div>
+                        <div class="DescriptionContainer">
+                            <div class="DescriptionTitle"><Heading size={'h6'} weight={'bold'}>{$t("commons.description")}</Heading></div>
+                            <div class="DescriptionContent"><Body justify>{data.description}</Body></div>
                         </div>
-                        <div class="List">
-                            <div class="title">
-                                <Heading size={'h6'}>{$t('product.effects')}</Heading>
-                            </div>
-                            <div class="elements">
-                                {#each data.effects as effect}
-                                    <div class="element">
-                                        <div class="Puce">
-                                            <img src={PuceIcon} alt="Puce">
+                        <div class="ListContainer">
+                            <div class="List">
+                                <div class="title">
+                                    <Heading size={'h6'}>{$t('product.aspects')}</Heading>
+                                </div>
+                                <div class="elements">
+                                    {#each data.aspects as aspect}
+                                        <div class="element">
+                                            <div class="Puce">
+                                                <img src={PuceIcon} alt="Puce">
+                                            </div>
+                                            <Body>{$t(aspect)}</Body>
                                         </div>
-                                        <Body>{$t(effect)}</Body>
-                                    </div>
-                                {/each}
+                                    {/each}
+                                </div>
                             </div>
-                        </div>
-                        <div class="List">
-                            <div class="title">
-                                <Heading size={'h6'}>{$t('product.ideal-for')}</Heading>
-                            </div>
-                            <div class="elements">
-                                {#each data.idealFor as i}
-                                    <div class="element">
-                                        <div class="Puce">
-                                            <img src={PuceIcon} alt="Puce">
+                            <div class="List">
+                                <div class="title">
+                                    <Heading size={'h6'}>{$t('product.flavors')}</Heading>
+                                </div>
+                                <div class="elements">
+                                    {#each data.flavors as flavor}
+                                        <div class="element">
+                                            <div class="Puce">
+                                                <img src={PuceIcon} alt="Puce">
+                                            </div>
+                                            <Body>{$t(flavor)}</Body>
                                         </div>
-                                        <Body>{$t(i)}</Body>
-                                    </div>
-                                {/each}
+                                    {/each}
+                                </div>
+                            </div>
+                            <div class="List">
+                                <div class="title">
+                                    <Heading size={'h6'}>{$t('product.effects')}</Heading>
+                                </div>
+                                <div class="elements">
+                                    {#each data.effects as effect}
+                                        <div class="element">
+                                            <div class="Puce">
+                                                <img src={PuceIcon} alt="Puce">
+                                            </div>
+                                            <Body>{$t(effect)}</Body>
+                                        </div>
+                                    {/each}
+                                </div>
+                            </div>
+                            <div class="List">
+                                <div class="title">
+                                    <Heading size={'h6'}>{$t('product.ideal-for')}</Heading>
+                                </div>
+                                <div class="elements">
+                                    {#each data.idealFor as i}
+                                        <div class="element">
+                                            <div class="Puce">
+                                                <img src={PuceIcon} alt="Puce">
+                                            </div>
+                                            <Body>{$t(i)}</Body>
+                                        </div>
+                                    {/each}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +140,7 @@
                         <div class="RecapContent">
                             <Body size={'huge'} weight={'semiBold'} span={'product.unity'}>{$t('product.price', { values: { price: data.price } })}</Body>
                         </div>
-                        <div class="RecapContent"><Body primary size={'veryLarge'} span={new Date().toDateString()}>{$t('product.free-delivery')}</Body></div>
+                        <div class="RecapContent"><Body primary size={'veryLarge'} span={$t("product.delivered-at", {values:{date : date.toLocaleDateString()}})}>{$t('product.free-delivery')}</Body></div>
                         <div class="RecapContent">
                             <Input type={'number'} title={"product.quantity-in-g"} min={1} max={data.stock} value={quantity} onChange={(newQuantity) => quantity = newQuantity}/>
                         </div>    
@@ -212,12 +216,19 @@
             display: flex;
             flex-direction: row;
 
+            .RowContent{
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+            }
+
             .ProductContent{
                 display: flex;
                 flex-direction: column;
                 flex-grow: 1;
                 padding: 0 20px;
                 position: relative;
+
 
                 .ImageContainer{
                     width: 400px;
@@ -359,6 +370,72 @@
                         .ReviewMessage{
                             margin-top: 40px;
                             margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width : 1350px){
+            .ProductContainer{
+                flex-direction: column;
+                gap: 50px;
+            }
+        }
+
+        @media screen and (max-width : 1000px){
+            .ProductContainer{
+                .RowContent{
+                    flex-direction: column;
+                    gap: 50px;
+                }
+            }
+
+            .Separator{
+                width: 100%;
+            }
+
+            .ReviewContainer{
+                padding: 0 20px;
+
+                .ReviewContent{
+                    .ReviewDetails{
+                        .Review{
+                            width: 100%;
+                            max-width: none;
+                            .ReviewHeader{
+                                flex-direction: column;
+                                align-items: start;
+                                gap: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width : 650px){
+            .ProductContainer{
+                width: 100%;
+                .ProductContent{
+                    width: 100%;
+
+                    .ImageContainer, .RecapContainer{
+                        width: 100%;
+                    }
+                }
+            }
+
+            .ReviewContainer{
+
+                .ReviewContent{
+                    .ReviewDetails{
+                        .Review{
+                            .ReviewHeader{
+                                flex-direction: column;
+                                align-items: start;
+                                gap: 15px;
+                            }
                         }
                     }
                 }
