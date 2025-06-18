@@ -19,12 +19,12 @@
         <div class="HomeContent">
             <div class="ContentItems">
                 <div class="ContentItem" onclick={()=>{onSwitchPage('shop')}}>
-                    <Heading size={'h2'}>{$t('shop')}</Heading>
-                    <Body uppercase>{$t('shopDescription')}</Body>
+                    <Heading size={'h2'}>{$t('nav.shop')}</Heading>
+                    <Body uppercase>{$t('home.shop')}</Body>
                 </div>
                 <div class="ContentItem" onclick={()=>{onSwitchPage('about')}}>
-                    <Heading size={'h2'}>{$t('about')}</Heading>
-                    <Body uppercase>{$t('aboutDescription')}</Body>
+                    <Heading size={'h2'}>{$t('nav.about')}</Heading>
+                    <Body uppercase>{$t('home.about')}</Body>
                 </div>
             </div>
         </div>
@@ -39,12 +39,12 @@
         <div class="HomeContent">
             <div class="ContentItems right">
                 <div class="ContentItem" onclick={()=>{onSwitchPage('faq')}}>
-                    <Heading size={'h2'} right>{$t('faq')}</Heading>
-                    <Body right uppercase>{$t('faqDescription')}</Body>
+                    <Heading size={'h2'} right>{$t('nav.faq')}</Heading>
+                    <Body right uppercase>{$t('home.faq')}</Body>
                 </div>
                 <div class="ContentItem" onclick={()=>{onSwitchPage('contact')}}>
-                    <Heading size={'h2'} right>{$t('contact')}</Heading>
-                    <Body right uppercase>{$t('contactDescription')}</Body>
+                    <Heading size={'h2'} right>{$t('nav.contact')}</Heading>
+                    <Body right uppercase>{$t('home.contact')}</Body>
                 </div>
             </div>
         </div>

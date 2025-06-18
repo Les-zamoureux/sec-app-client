@@ -5,7 +5,7 @@ import precompileIntl from "svelte-intl-precompile/sveltekit-plugin";
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
-  plugins: [svelte(), precompileIntl("locales")],
+  plugins: [svelte(), precompileIntl('locales')],
   build: {
     outDir: 'build'
   },

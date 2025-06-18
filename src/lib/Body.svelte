@@ -14,6 +14,7 @@
     (props.uppercase ? ' uppercase' : "") +
     (props.large ? ' large' : "") +
     (props.right ? ' right' : "") +
+    (props.justify ? ' justify' : "") +
     (props.center ? ' center' : "") +
     ' ' + (props.weight || 'medium') +
     (props.hover ? ' hover' : "")
@@ -24,6 +25,9 @@
     {/if}
     {#if props.success}
     <em>{$t(props.success)}</em>
+    {/if}
+    {#if props.span}
+    <span>{$t(props.span)}</span>
     {/if}
 </p>
 
@@ -39,12 +43,32 @@
         font-size: 14px;
         transition: all .2s;
 
+        span{
+            font-size: 12px;
+            font-weight: 400;
+            height: 100%;
+            color: white;
+            margin-left: 5px;
+        }
+
+        &.huge{
+            font-size: 30px;
+        }
+
+        &.veryLarge{
+            font-size: 18px;
+        }
+
         &.large{
             font-size: 16px;
         }
 
         &.right{
             text-align: right;
+        }
+
+        &.justify{
+            text-align: justify;
         }
 
         &.hover{
@@ -72,7 +96,7 @@
         }
 
         &.error{
-            color: var(--red-100);
+            color: var(--red100);
         }
 
         &.uppercase{
