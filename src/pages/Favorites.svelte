@@ -5,7 +5,7 @@
 </script>
 
 <div class="FavoritesPage">
-    <Page title="favorites">
+    <Page title="nav.favorites">
 
     </Page>
 </div>

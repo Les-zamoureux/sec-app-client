@@ -6,7 +6,7 @@
 </script>
 
 <div class="AboutPage">
-    <Page title="about">
+    <Page title="nav.about">
 
     </Page>
 </div>

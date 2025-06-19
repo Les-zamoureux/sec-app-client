@@ -6,7 +6,7 @@
 </script>
 
 <div class="ProfilePage">
-    <Page title={"profile"}>
+    <Page title={"nav.profile"}>
         <Button size={'small'} label={'commons.disconnect'} onClick={props.disconnect}/>
     </Page>
 </div>

@@ -5,7 +5,7 @@
 </script>
 
 <div class="ContactPage">
-    <Page title="contact">
+    <Page title="nav.contact">
 
     </Page>
 </div>

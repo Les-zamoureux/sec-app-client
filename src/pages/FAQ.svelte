@@ -5,7 +5,7 @@
 </script>
 
 <div class="FAQPage">
-    <Page title="faq">
+    <Page title="nav.faq">
 
     </Page>
 </div>

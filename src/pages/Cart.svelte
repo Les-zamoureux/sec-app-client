@@ -5,7 +5,7 @@
 </script>
 
 <div class="CartPage">
-    <Page title="cart">
+    <Page title="nav.cart">
 
     </Page>
 </div>
