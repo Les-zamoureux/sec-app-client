@@ -28,6 +28,7 @@
 
     let open = $state(false)
     let noTransition = $state(false)
+    let mobile = $state(window.innerWidth < 1024)
 
     let timeout = null
 
@@ -41,6 +42,9 @@
 
 <svelte:window
     onresize={(e)=>{
+        if(!mobile && e.target.innerWidth < 1024) mobile = true
+        else if(mobile && e.target.innerWidth > 1024) mobile = false
+        
         clearTimeout(timeout)
         noTransition = true
         if(open) open = false
@@ -65,7 +69,7 @@
             {#if option.image}
                 <img src={option.image} alt="Logo">
             {:else if option.name}
-                <Body large primary={$currentPage === option.name} uppercase hover>{$t("nav." + option.name)}</Body>
+                <Body large primary={$currentPage === option.name} uppercase hover={!mobile}>{$t("nav." + option.name)}</Body>
             {/if}
         </button>
         {/each}
@@ -77,7 +81,6 @@
             {:else}
                 <Button type={2} size={'small'} label={'login.title'} onClick={()=>onNavigate('login', '/login')}/>
             {/if}
-            
         </div>
         <div class="closeIcon">
             <Button size={"medium"} nude icon={CrossIcon} iconHover={CrossIconPrimary} onClick={()=>{open=!open}}/>
