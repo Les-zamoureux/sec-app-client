@@ -10,6 +10,8 @@
     import Body from '../lib/Body.svelte';
     import { emailCheck } from '../utils/helpers';
     import Request from '../utils/Request';
+
+    import { currentPage } from '../stores/store';
     
 	let props = $props();
 
@@ -22,7 +24,7 @@
     let submitSuccess = $state({})
 
     $effect(()=>{
-        if(props.currentPage === "verifyAccount"){
+        if($currentPage === "verifyAccount"){
             Request.post('/verify-account', {verificationToken:props.id}).then((res) => {
                 if(res){
                     submitError = {}
@@ -38,12 +40,8 @@
         if((email || username) && password){
             Request.post('/login', {email:email, password:password}).then((res) => {
                 submitError = {}
-                window.localStorage.setItem('authToken', res.token)
-                window.localStorage.setItem('isAdmin', res.is_admin)
-                window.localStorage.setItem('username', res.username)
-                props.setLogged(true)
+                props.login(res.token, res.username, res.is_admin)
                 navigate('/')
-                console.log(res)
             }).catch(err => {
                 console.log(err)
                 submitError = {"loginError":true}
@@ -128,7 +126,7 @@
                 <img src={LogoSvg} alt="Logo"/>
             </div>
         </div>
-        {#if props.currentPage === "login"}
+        {#if $currentPage === "login"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("login.title")}</Heading>
@@ -147,7 +145,7 @@
                 <div style="margin-top:10px"><Button type={3} label={"login.forgotten-password"} onClick={()=>onSwitchPage("forgotPassword")}/></div>
             </div>
         </div>
-        {:else if props.currentPage === "signIn"}
+        {:else if $currentPage === "signIn"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("sign-in.title")}</Heading>
@@ -171,7 +169,7 @@
                 <Button type={3} label={"sign-in.already-account"} onClick={()=>onSwitchPage("login")}/>
             </div>
         </div>
-        {:else if props.currentPage === "forgotPassword"}
+        {:else if $currentPage === "forgotPassword"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("forgot-password.title")}</Heading>
@@ -191,7 +189,7 @@
             </div>
             {/if}
         </div>
-        {:else if props.currentPage === "changePassword"}
+        {:else if $currentPage === "changePassword"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("change-password.title")}</Heading>
@@ -211,7 +209,7 @@
             </div>
             {/if}
         </div>
-        {:else if props.currentPage === "verifyAccount"}
+        {:else if $currentPage === "verifyAccount"}
         <div class="FormContent">
             <div class="FormTitle">
                 <Heading size="h3">{$t("verify-account.title")}</Heading>

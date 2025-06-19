@@ -14,6 +14,8 @@
     import Body from './Body.svelte';
     import { t } from 'svelte-intl-precompile';
     import Button from './Button.svelte';
+    import { logged, currentPage } from '../stores/store';
+
     let props = $props()
 
     let options = [
@@ -31,7 +33,7 @@
 
     const onNavigate = (page, link) => {
         open = false
-        props.setCurrentPage(page)
+        currentPage.set(page)
         navigate(link)
     }
 
@@ -63,12 +65,12 @@
             {#if option.image}
                 <img src={option.image} alt="Logo">
             {:else if option.name}
-                <Body large primary={props.currentPage === option.name} uppercase hover>{$t("nav." + option.name)}</Body>
+                <Body large primary={$currentPage === option.name} uppercase hover>{$t("nav." + option.name)}</Body>
             {/if}
         </button>
         {/each}
         <div class="icons">
-            {#if props.logged}
+            {#if $logged}
                 <Button size={"small"} nude icon={LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
                 <Button size={"small"} nude icon={CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
                 <Button size={"small"} nude icon={ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>

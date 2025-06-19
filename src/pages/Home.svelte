@@ -5,11 +5,12 @@
     import CanabisImage from './../assets/canabis.svg'
     import Logo from './../assets/logo.svg'
     import { t } from 'svelte-intl-precompile';
+    import { currentPage } from '../stores/store';
 
     let props = $props()
 
     const onSwitchPage = (page) => {
-        props.setCurrentPage(page)
+        currentPage.set(page)
         navigate('/' + page)
     }
 </script>
