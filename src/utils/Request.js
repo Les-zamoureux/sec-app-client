@@ -5,7 +5,7 @@ class Request {
 
     static async get(url){
         return new Promise((resolve, reject) => {
-            axios.get(this.serverUrl + url, {headers:{token: window.localStorage.getItem("authToken")}}).then((response) => {
+            axios.get(this.serverUrl + url, {headers:{'Authorization': `Bearer ${window.localStorage.getItem("authToken")}`}}).then((response) => {
                 resolve(response.data)
             }).catch((err) => {
                 reject(err)
@@ -15,7 +15,7 @@ class Request {
 
     static post(url, object){
         return new Promise((resolve, reject) => {
-            axios.post(this.serverUrl + url, object, {headers:{token:window.localStorage.getItem("authToken")}}).then((response) => {
+            axios.post(this.serverUrl + url, object, {headers:{'Authorization': `Bearer ${window.localStorage.getItem("authToken")}`}}).then((response) => {
                 let data = response.data
                 if(data && data.error) reject(data)
                 resolve(data)
@@ -27,7 +27,7 @@ class Request {
 
     static put(url, object){
         return new Promise((resolve, reject) => {
-            axios.put(this.serverUrl + url, object, {headers:{token: window.localStorage.getItem("authToken")}}).then((response) => {
+            axios.put(this.serverUrl + url, object, {headers:{'Authorization': `Bearer ${window.localStorage.getItem("authToken")}`}}).then((response) => {
                 let data = response.data
                 if(data && data.error) reject(data)
                 resolve(data)
@@ -39,7 +39,7 @@ class Request {
 
     static delete(url){
         return new Promise((resolve, reject) => {
-            axios.delete(this.serverUrl + url, {headers:{token: window.localStorage.getItem("authToken")}}).then((response) => {
+            axios.delete(this.serverUrl + url, {headers:{'Authorization': `Bearer ${window.localStorage.getItem("authToken")}`}}).then((response) => {
                 let data = response.data
                 if(data && data.error) reject(data)
                 resolve(data)

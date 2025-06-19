@@ -11,6 +11,7 @@
   import Favorites from "./pages/Favorites.svelte";
   import Cart from "./pages/Cart.svelte";
   import Product from "./pages/Product.svelte";
+    import Admin from "./pages/Admin.svelte";
 
   let props = $props()
 
@@ -76,6 +77,13 @@
             setCurrentPage('contact')
           }
           break;
+        case 'admin' :
+          if(props.id) navigate('/admin')
+          if(window.localStorage.getItem('isAdmin') !== "true") navigate('/')
+          if(currentPage !== "admin"){
+            setCurrentPage('admin')
+          }
+          break;
         case 'favorites' :
           if(!logged) navigate('/')
           if(props.id) navigate('/favorites')
@@ -124,6 +132,12 @@
             currentPage = "changePassword"
           }
           break
+        case "verify-account":
+          if(logged || !props.id) navigate('/')
+          if(currentPage !== "verifyAccount"){
+            currentPage = "verifyAccount"
+          }
+          break
         default :
           setCurrentPage('home')
           navigate('/')
@@ -134,6 +148,8 @@
 
   const disconnect = () => {
     window.localStorage.removeItem('authToken')
+    window.localStorage.removeItem('username')
+    window.localStorage.removeItem('isAdmin')
     setLogged(false)
   }
 
@@ -143,9 +159,9 @@
 
 <Router url={url}>
   <div class="AppContainer">
-    {#if currentPage === "login" || currentPage === "signIn" || currentPage === "forgotPassword" || currentPage === "changePassword"}
+    {#if currentPage === "login" || currentPage === "signIn" || currentPage === "forgotPassword" || currentPage === "changePassword" || currentPage === "verifyAccount"}
       <div class="AppContent">
-        <Login currentPage={currentPage} setLogged={setLogged} logged={logged}/>
+        <Login currentPage={currentPage} setLogged={setLogged} logged={logged} id={props.id}/>
       </div>
     {:else}
       <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} logged={logged}/>
@@ -155,6 +171,7 @@
         {:else if currentPage === "product"} <Product id={props.id}/>
         {:else if currentPage === "about"} <About/>
         {:else if currentPage === "faq"} <Faq/>
+        {:else if currentPage === "admin"} <Admin/>
         {:else if currentPage === "contact"} <Contact/>
         {:else if currentPage === "favorites"} <Favorites/>
         {:else if currentPage === "cart"} <Cart/>

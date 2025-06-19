@@ -30,7 +30,14 @@
 
     "change-password":{
         "title":"Nouveau mot de passe",
-        "error":"Modification de mot de passe impossible."
+        "error":"Modification de mot de passe impossible, le lien utilisé est expiré"
+    },
+
+    "verify-account":{
+        "title":"Vérification de votre compte",
+        "description":"Votre adresse email a bien été vérifiée, vous pouvez maintenant accéder à votre compte.",
+        "connection":"Accéder à mon compte",
+        "error":"Vérification du compte impossible, le lien utilisé est expiré"
     },
 
     "nav":{

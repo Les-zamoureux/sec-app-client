@@ -9,6 +9,7 @@
     import Button from '../lib/Button.svelte';
     import Body from '../lib/Body.svelte';
     import { emailCheck } from '../utils/helpers';
+    import Request from '../utils/Request';
     
 	let props = $props();
 
@@ -20,52 +21,81 @@
     let submitError = $state({})
     let submitSuccess = $state({})
 
+    $effect(()=>{
+        if(props.currentPage === "verifyAccount"){
+            Request.post('/verify-account', {verificationToken:props.id}).then((res) => {
+                if(res){
+                    submitError = {}
+                }
+            }).catch(err => {
+                console.log(err)
+                submitError = {"invalidToken":true}
+            })
+        }
+    })
+
     const onLogin = () => {
-        if(email === "email" && password === "password"){
-            submitError = {"loginError":true}
-        }else{
-            submitError = {}
-            //REQUEST
-            window.localStorage.setItem('authToken', "TOKEN")
-            props.setLogged(true)
-            navigate('/')
+        if((email || username) && password){
+            Request.post('/login', {email:email, password:password}).then((res) => {
+                submitError = {}
+                window.localStorage.setItem('authToken', res.token)
+                window.localStorage.setItem('isAdmin', res.is_admin)
+                window.localStorage.setItem('username', res.username)
+                props.setLogged(true)
+                navigate('/')
+                console.log(res)
+            }).catch(err => {
+                console.log(err)
+                submitError = {"loginError":true}
+            })
         }
     }
 
     const onSignIn = () => {
-        submitError = {}
-        if(password && confirmPassword && password !== confirmPassword) submitError["passwordError"] = true
-        if(email && email === "email") submitError["emailAlreadyUse"] = true
-        if(username && username === "username") submitError["usernameAlreadyUse"] = true
-        
-        if(Object.keys(submitError).length === 0){
+        if((email && emailCheck(email)) && password && confirmPassword && username){
             submitError = {}
-            //REQUEST
-            window.localStorage.setItem('authToken', "TOKEN")
-            props.setLogged(true)
-            navigate('/')
+            if(password && confirmPassword && password !== confirmPassword) submitError["passwordError"] = true
+            if(Object.keys(submitError).length === 0){
+                Request.post('/register', {username:username, email:email, password:password}).then((res) => {
+                    submitError = {}
+                    navigate("/login")
+                }).catch(err => {
+                    if(err.status === 409){
+                        let error = err.response?.data?.error
+                        if(error && error.startsWith("already-used")){
+                            if(error.includes("email")) submitError["emailAlreadyUse"] = true
+                            if(error.includes("username")) submitError["usernameAlreadyUse"] = true
+                        }
+                    }else{
+                        submitError["registerError"] = true
+                    }
+                })
+            }
         }
     }
 
     const onPasswordRequested = () => {
-        if(email && email === "email"){
-            submitError["emailDoesntExist"] = true
-        }else{
-            submitError = {}
-            //REQUEST
+        submitError = {}
+        Request.post('/forgotten-password', {email:email}).then((res) => {
             submitSuccess = {'emailSent' : true}
-        }
+        }).catch(err => {
+            console.log(err)
+            submitError["emailDoesntExist"] = true
+        })
     }
 
     const onChangePassword = () => {
         if(!password || !confirmPassword || (password && confirmPassword && password !== confirmPassword)){
             submitError["passwordError"] = true
-        }else if(props.token === "existepas"){
-            submitError["invalidToken"] = true
         }else{
             submitError = {}
-            //REQUEST
-            navigate('/')
+            Request.post('/change-password', {password:password, passwordToken:props.id}).then((res) => {
+                submitSuccess = {'emailSent' : true}
+                navigate('/login')
+            }).catch(err => {
+                console.log(err)
+                submitError["invalidToken"] = true
+            })
         }
     }
 
@@ -177,7 +207,25 @@
             </div>
             {#if submitError["invalidToken"]}
             <div class="FormField">
-                <Body error={'invalidToken'}/>
+                <Body error={$t("change-password.error")}/>
+            </div>
+            {/if}
+        </div>
+        {:else if props.currentPage === "verifyAccount"}
+        <div class="FormContent">
+            <div class="FormTitle">
+                <Heading size="h3">{$t("verify-account.title")}</Heading>
+            </div>
+            {#if submitError["invalidToken"]}
+            <div class="FormField">
+                <Body error={$t("verify-account.error")}/>
+            </div>
+            {:else}
+            <div class="FormField">
+                <Body>{$t("verify-account.description")}</Body>
+            </div>
+            <div class="FormField">
+                <Button type={1} size={"medium"} label={"verify-account.connection"} onClick={()=>navigate('/login')}/>
             </div>
             {/if}
         </div>
