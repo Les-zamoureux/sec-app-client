@@ -7,7 +7,7 @@
     let hover = $state(false)
 
     let classnames = $state("Button")
-    if(props.size) classnames += ' ' + props.size
+    if(props.size) classnames += ' ' + (props.size ? props.size : "medium")
     classnames += props.type ? (' type' + props.type) : " type1"
 
     const onClickButton = () => {

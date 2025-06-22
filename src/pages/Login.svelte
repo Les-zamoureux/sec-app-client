@@ -56,7 +56,7 @@
             if(Object.keys(submitError).length === 0){
                 Request.post('/register', {username:username, email:email, password:password}).then((res) => {
                     submitError = {}
-                    navigate("/login")
+                    onSwitchPage('login')
                 }).catch(err => {
                     if(err.status === 409){
                         let error = err.response?.data?.error
@@ -64,6 +64,10 @@
                             if(error.includes("email")) submitError["emailAlreadyUse"] = true
                             if(error.includes("username")) submitError["usernameAlreadyUse"] = true
                         }
+                    }else if(err.status === 400){
+                        let error = err.response?.data?.error
+                        if(err && err === "Invalid request") submitError["registerError"] = true
+                        else{submitError["passwordFormat"] = true}
                     }else{
                         submitError["registerError"] = true
                     }
@@ -89,7 +93,7 @@
             submitError = {}
             Request.post('/change-password', {password:password, passwordToken:props.id}).then((res) => {
                 submitSuccess = {'emailSent' : true}
-                navigate('/login')
+                onSwitchPage('login')
             }).catch(err => {
                 console.log(err)
                 submitError["invalidToken"] = true
@@ -157,7 +161,7 @@
                 <Input onEnterPress={()=>onSignIn()} error={submitError["emailAlreadyUse"] ? 'sign-in.email-already-use' : null} value={email} type={email} onChange={(val) => email = val} title={'sign-in.email-field'}/>
             </div>
             <div class="FormField">
-                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'sign-in.password-error' : null} value={password} type={"password"} onChange={(val) => password = val} title={'login.password-field'}/>
+                <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'sign-in.password-error' : submitError["passwordFormat"] ? 'sign-in.password-format' : null} value={password} type={"password"} onChange={(val) => password = val} title={'login.password-field'}/>
             </div>
             <div class="FormField">
                 <Input onEnterPress={()=>onSignIn()} error={submitError["passwordError"] ? 'sign-in.password-error' : null} value={confirmPassword} type={"password"} onChange={(val) => confirmPassword = val} title={'sign-in.confirm-password-field'}/>
@@ -223,7 +227,7 @@
                 <Body>{$t("verify-account.description")}</Body>
             </div>
             <div class="FormField">
-                <Button type={1} size={"medium"} label={"verify-account.connection"} onClick={()=>navigate('/login')}/>
+                <Button type={1} size={"medium"} label={"verify-account.connection"} onClick={()=>onSwitchPage('login')}/>
             </div>
             {/if}
         </div>

@@ -14,16 +14,9 @@
   import Admin from "./pages/Admin.svelte";
   import Request from "./utils/Request";
   import { logged, currentPage } from "./stores/store";
+  import Popup from "./lib/Popup.svelte";
 
   let props = $props()
-
-  const setLogged = (_logged) => {
-    logged.set(_logged)
-  }
-
-  const setCurrentPage = (_currentPage) => {
-    currentPage.set(_currentPage)
-  }
 
   $effect(()=>{
     if(!$logged){
@@ -33,8 +26,11 @@
           login(authToken, res.username, res.is_admin)
         }).catch(err => {
           console.log(err)
+          if(props.tab === "cart" || props.tab === 'favorites' || props.tab === 'profile') navigate('/')
           disconnect()
         })
+      }else{
+        if(props.tab === "cart" || props.tab === 'favorites' || props.tab === 'profile') navigate('/')
       }
     }
 
@@ -90,21 +86,18 @@
           }
           break;
         case 'favorites' :
-          if(!$logged) navigate('/')
           if(props.id) navigate('/favorites')
           if($currentPage !== "favorites"){
             setCurrentPage('favorites')
           }
           break;
         case 'cart' :
-          if(!$logged) navigate('/')
           if(props.id) navigate('/cart')
           if($currentPage !== "cart"){
             setCurrentPage('cart')
           }
           break;
         case 'profile' :
-          if(!$logged) navigate('/')
           if(props.id) navigate('/profile')
           if($currentPage !== "profile"){
             setCurrentPage('profile')
@@ -151,6 +144,14 @@
     }
   })
 
+  const setLogged = (_logged) => {
+    logged.set(_logged)
+  }
+
+  const setCurrentPage = (_currentPage) => {
+    currentPage.set(_currentPage)
+  }
+
   const login = (token, username, isAdmin) => {
     window.localStorage.setItem('authToken', token)
     window.localStorage.setItem('username', username)
@@ -191,6 +192,7 @@
         {/if}
       </div>
     {/if}
+    <Popup/>
   </div>
 </Router> 
 
