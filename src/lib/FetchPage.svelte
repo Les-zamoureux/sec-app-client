@@ -3,13 +3,25 @@
     import { t } from "svelte-intl-precompile";
     import Input from "./Input.svelte";
     import Button from "./Button.svelte";
+    import Table from "./Table.svelte";
+    import Request from "../utils/Request";
 
     let props = $props()
     let search = $state("")
+    let filteredData = $state(props.data)
 
     const addData = () => {
-
+        if(props.addData) props.addData()
     }
+
+    $effect(()=>{
+        if(search){
+            filteredData = props.data.filter(d => props.filterData(d, search))
+        }else{
+            filteredData = props.data
+        }
+    })
+
 </script>
 
 <div class="FetchPage">
@@ -18,11 +30,11 @@
     </div>
     <div class="PageContent">
         <div class="ContentSearch">
-            <Input type={"search"} value={search} onChange={(val) => {search = val}}/>
-            <Button size={'medium'} label={'admin.add-data'} onClick={()=>{addData()}}/>
+            <Input placeholder={"table.search"} type={"search"} value={search} onChange={(val) => {search = val}}/>
+            <Button size={'medium'} label={'admin.add-data'} onClick={addData}/>
         </div>
-        <div class="ContentTable">
-
+        <div class="ContentTable">  
+            <Table data={filteredData} columns={props.columns}/>
         </div>
     </div>
 </div>
@@ -56,7 +68,6 @@
 
             .ContentTable{
                 flex-grow: 1;
-                background-color: red;
             }
         }
     }

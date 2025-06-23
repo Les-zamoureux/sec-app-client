@@ -69,7 +69,18 @@
         "users":"Vu d'essemble sur tous les utilisateurs de MyWeed",
         "logs":"Un aprçu des logs du serveur",
 
-        "add-data":"Ajouter"
+        "add-data":"Ajouter",
+
+        "faq":{
+            "answer":"Réponse",
+            "question": "Question",
+            "delete":"Suppression d'un élément",
+            "delete-description":"Êtes vous sur de vouloir supprimer cet élément ? Il ne sera plus possible de le récupérer par la suite.",
+            "add-popup":"Ajout d'un nouvel élément",
+            "edit-popup":"Mise à jour d'un élément",
+            "answer-placeholder":"Saisir la réponse",
+            "question-placeholder":"Saisir la question"
+        }
     },
 
     "home":{
@@ -149,7 +160,14 @@
         "new-username":"Nouvel identifiant :",
         "invalid-password":"Le mot de passe est incorrect",
         "command-history":"Historique des commandes",
+        "password-popup":"Édition de votre mot de passe",
         "username-popup":"Édition de l'identifiant"
+    },
+
+    "table":{
+        "empty":"Aucune donnée à afficher.",
+        "id":"Id",
+        "search":"Rechercher un élément"
     },
 
     "commons":{
@@ -160,6 +178,7 @@
         "connect":"Connexion",
         "validate":"Valider",
         "cancel":"Annuler",
-        "confirm":"Confirmer"
+        "confirm":"Confirmer",
+        "add":"Ajouter"
     }
 }

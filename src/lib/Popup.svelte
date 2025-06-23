@@ -38,6 +38,7 @@
             border-radius: 10px;
             display: flex;
             padding: 20px;
+            overflow-y: auto;
         }
     }
 </style>
