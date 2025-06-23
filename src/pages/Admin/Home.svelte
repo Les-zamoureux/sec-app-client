@@ -38,7 +38,7 @@
                 </div>
                 <div class="CardContent">
                     <Heading center size={'h3'}>{$t("menu."+card.name)}</Heading>
-                    <Body center>{$t("admin."+card.name)}</Body>
+                    <Body center>{$t("admin."+card.name+".home")}</Body>
                 </div>
             </button>
         {/each}

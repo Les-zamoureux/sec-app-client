@@ -19,14 +19,14 @@
     }
 
     const plus = () => {
-        let newValue = Number(props.value) +1
+        let newValue = Number(Number(props.value) + (props.step ? Number(props.step) : 1)).toFixed(props.step ? (String(props.step).length - 2) : 0)
         if((props.max != null && newValue <= props.max) || props.max == null){
             props.onChange(newValue)
         }
     }
 
     const minus = () => {
-        let newValue = Number(props.value) -1
+        let newValue = Number(Number(props.value) - (props.step ? Number(props.step) : 1)).toFixed(props.step ? (String(props.step).length - 2) : 0)
         if((props.min != null && newValue >= props.min) || props.min == null){
             props.onChange(newValue)
         }
@@ -42,7 +42,7 @@
     <div class={"InputContent" + (props.error ? ' error' : "") + (focus ? ' focus' : "") + (props.type == 'search' ? ' search' : "") + (props.type == 'textarea' ? ' textarea' : "") + (props.type == 'number' ? ' number' : "")}>
         {#if props.type === 'textarea'}
             <textarea class="input" value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}></textarea>
-        {:else} <input class="input" value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} type={props.type ? props.type : "text"} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}/>
+        {:else} <input class="input" step={props.step || 1} value={props.value} placeholder={props.placeholder ? $t(props.placeholder) : null} type={props.type ? props.type : "text"} onkeypress={onKeyPress} onfocusin={(e)=>{focus=true}} onfocusout={(e)=>{focus=false}} oninput={onChangeValue}/>
         {/if}
         
         {#if props.type === "search"}

@@ -64,16 +64,12 @@
 
     "admin":{
         "title":"Portail administrateur",
-        "products":"Gérer les stocks et produits de MyWeed",
-        "faq":"Créer et organiser les questions et réponses de la FAQ",
-        "users":"Vu d'essemble sur tous les utilisateurs de MyWeed",
-        "logs":"Un aprçu des logs du serveur",
-
         "add-data":"Ajouter",
         "true":"Oui",
         "false":"Non",
 
         "faq":{
+            "home":"Créer et organiser les questions et réponses de la FAQ",
             "answer":"Réponse",
             "question": "Question",
             "delete":"Suppression d'un élément",
@@ -85,22 +81,42 @@
         },
 
         "logs":{
+            "home":"Un aprçu des logs du serveur",
             "method":"Méthode",
             "url":"URL",
             "user-id":"Id de l'utilisateur"
+        },
+
+        "products":{
+            "home":"Gérer les stocks et produits de MyWeed",
         },
 
         "product":{
             "image":"Image",
             "category":"Categorie",
             "type":"Type",
-            "stock":"Stock",
-            "price":"Prix (/g)",
-            "name":"Nom"
+            "stock":"Stock (en g)",
+            "price":"Prix (en €)",
+            "name":"Nom",
+            "image-title":"Selectionner une image",
+            "name-title":"Nom du produit",
+            "description-title":"Description",
+            "genetics-title":"Origine",
+            "type-title":"Type",
+            "category-title":"Catégorie",
+            "price-title":"Prix (en €)",
+            "stock-title":"Quantité de stock (en g)",
+            "thc-title":"Taux de THC (en %)",
+            "cbd-title":"Taux de CBD (en %)",
+            "aspects-title":"Apparances (séparer les adjectifs par des ';')",
+            "ideal-for-title":"Idéal pour (séparer les adjectifs par des ';')",
+            "flavors-title":"Gouts (séparer les adjectifs par des ';')",
+            "effects-title":"Effets (séparer les adjectifs par des ';')"
         },
 
         "users":{
             "username":"Identifiant",
+            "home":"Vu d'essemble sur tous les utilisateurs de MyWeed",
             "is-admin":"Admin",
             "creation-date":"Date de création",
             "verification-date":"Date de vérification"
