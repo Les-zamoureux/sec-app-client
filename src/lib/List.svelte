@@ -1,11 +1,11 @@
 <script>
-    import Case from "./Case.svelte";
+import Case from "./Case.svelte";
 
-    let props = $props()
+let props = $props();
 
-    let onItemClick = (item) => {
-        if(props.onItemClick) props.onItemClick(item)
-    }
+let onItemClick = (item) => {
+  if (props.onItemClick) props.onItemClick(item);
+};
 </script>
 
 <div class="List">

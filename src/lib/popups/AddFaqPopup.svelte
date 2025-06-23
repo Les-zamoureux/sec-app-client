@@ -1,23 +1,23 @@
 <script>
-    import { closePopup } from "../../stores/store";
-    import Request from "../../utils/Request";
-    import Input from "../Input.svelte";
-    import PopupContent from "../PopupContent.svelte";
+import { closePopup } from "../../stores/store";
+import Request from "../../utils/Request";
+import Input from "../Input.svelte";
+import PopupContent from "../PopupContent.svelte";
 
-    let props = $props()
+let props = $props();
 
-    let question = $state(props.data?.question || "")
-    let answer = $state(props.data?.answer || "")
+let question = $state(props.data?.question || "");
+let answer = $state(props.data?.answer || "");
 
-    const save = () => {
-        if(props.save) {
-            props.save({
-                id: props.data ? props.data.id : null,
-                question : question,
-                answer : answer
-            })
-        }
-    }
+const save = () => {
+  if (props.save) {
+    props.save({
+      id: props.data ? props.data.id : null,
+      question: question,
+      answer: answer,
+    });
+  }
+};
 </script>
 
 <div class="AddFaqPopup">

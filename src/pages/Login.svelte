@@ -1,126 +1,153 @@
 <script>
-    import Heading from './../lib/Heading.svelte'
-    import LogoSvg from "./../assets/logo.svg"
+import Heading from "./../lib/Heading.svelte";
+import LogoSvg from "./../assets/logo.svg";
 
-    import { Link, navigate } from 'svelte-routing';
+import { Link, navigate } from "svelte-routing";
 
-    import {t} from 'svelte-intl-precompile'
-    import Input from '../lib/Input.svelte';
-    import Button from '../lib/Button.svelte';
-    import Body from '../lib/Body.svelte';
-    import { emailCheck } from '../utils/helpers';
-    import Request from '../utils/Request';
+import { t } from "svelte-intl-precompile";
+import Input from "../lib/Input.svelte";
+import Button from "../lib/Button.svelte";
+import Body from "../lib/Body.svelte";
+import { emailCheck } from "../utils/helpers";
+import Request from "../utils/Request";
 
-    import { currentPage } from '../stores/store';
-    
-	let props = $props();
+import { currentPage } from "../stores/store";
 
-    let username = $state("")
-    let email = $state("")
-    let password = $state("")
-    let confirmPassword = $state("")
+let props = $props();
 
-    let submitError = $state({})
-    let submitSuccess = $state({})
+let username = $state("");
+let email = $state("");
+let password = $state("");
+let confirmPassword = $state("");
 
-    $effect(()=>{
-        if($currentPage === "verifyAccount"){
-            Request.post('/verify-account', {verificationToken:props.id}).then((res) => {
-                if(res){
-                    submitError = {}
-                }
-            }).catch(err => {
-                console.log(err)
-                submitError = {"invalidToken":true}
-            })
+let submitError = $state({});
+let submitSuccess = $state({});
+
+$effect(() => {
+  if ($currentPage === "verifyAccount") {
+    Request.post("/user/verify/"+ props.id)
+      .then((res) => {
+        if (res) {
+          submitError = {};
         }
-    })
+      })
+      .catch((err) => {
+        console.log(err);
+        submitError = { invalidToken: true };
+      });
+  }
+});
 
-    const onLogin = () => {
-        if((email || username) && password){
-            Request.post('/login', {email:email, password:password}).then((res) => {
-                submitError = {}
-                props.login(res.token, res.username, res.is_admin)
-                navigate('/')
-            }).catch(err => {
-                console.log(err)
-                submitError = {"loginError":true}
-            })
-        }
-    }
+const onLogin = () => {
+  if ((email || username) && password) {
+    Request.post("/login", { email: email, password: password })
+      .then((res) => {
+        submitError = {};
+        props.login(res.token, res.username, res.is_admin);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        submitError = { loginError: true };
+      });
+  }
+};
 
-    const onSignIn = () => {
-        if((email && emailCheck(email)) && password && confirmPassword && username){
-            submitError = {}
-            if(password && confirmPassword && password !== confirmPassword) submitError["passwordError"] = true
-            if(Object.keys(submitError).length === 0){
-                Request.post('/register', {username:username, email:email, password:password}).then((res) => {
-                    submitError = {}
-                    onSwitchPage('login')
-                }).catch(err => {
-                    if(err.status === 409){
-                        let error = err.response?.data?.error
-                        if(error && error.startsWith("already-used")){
-                            if(error.includes("email")) submitError["emailAlreadyUse"] = true
-                            if(error.includes("username")) submitError["usernameAlreadyUse"] = true
-                        }
-                    }else if(err.status === 400){
-                        let error = err.response?.data?.error
-                        if(err && err === "Invalid request") submitError["registerError"] = true
-                        else{submitError["passwordFormat"] = true}
-                    }else{
-                        submitError["registerError"] = true
-                    }
-                })
-            }
-        }
-    }
-
-    const onPasswordRequested = () => {
-        submitError = {}
-        Request.post('/forgotten-password', {email:email}).then((res) => {
-            submitSuccess = {'emailSent' : true}
-        }).catch(err => {
-            console.log(err)
-            submitError["emailDoesntExist"] = true
+const onSignIn = () => {
+  if (email && emailCheck(email) && password && confirmPassword && username) {
+    submitError = {};
+    if (password && confirmPassword && password !== confirmPassword)
+      submitError["passwordError"] = true;
+    if (Object.keys(submitError).length === 0) {
+      Request.post("/register", {
+        username: username,
+        email: email,
+        password: password,
+      })
+        .then((res) => {
+          submitError = {};
+          onSwitchPage("login");
         })
+        .catch((err) => {
+          if (err.status === 409) {
+            let error = err.response?.data?.error;
+            if (error && error.startsWith("already-used")) {
+              if (error.includes("email"))
+                submitError["emailAlreadyUse"] = true;
+              if (error.includes("username"))
+                submitError["usernameAlreadyUse"] = true;
+            }
+          } else if (err.status === 400) {
+            let error = err.response?.data?.error;
+            if (err && err === "Invalid request")
+              submitError["registerError"] = true;
+            else {
+              submitError["passwordFormat"] = true;
+            }
+          } else {
+            submitError["registerError"] = true;
+          }
+        });
     }
+  }
+};
 
-    const onChangePassword = () => {
-        if(!password || !confirmPassword || (password && confirmPassword && password !== confirmPassword)){
-            submitError["passwordError"] = true
-        }else{
-            submitError = {}
-            Request.post('/change-password', {password:password, passwordToken:props.id}).then((res) => {
-                submitSuccess = {'emailSent' : true}
-                onSwitchPage('login')
-            }).catch(err => {
-                console.log(err)
-                submitError["invalidToken"] = true
-            })
-        }
-    }
+const onPasswordRequested = () => {
+  submitError = {};
+  Request.post("/forgotten-password", { email: email })
+    .then((res) => {
+      submitSuccess = { emailSent: true };
+    })
+    .catch((err) => {
+      console.log(err);
+      submitError["emailDoesntExist"] = true;
+    });
+};
 
-    const onSwitchPage = (page) => {
-        email = ''
-        password = ''
-        confirmPassword = ''
-        username = ''
-        switch(page){
-            case "login":
-                navigate('/login')
-                break
-            case "signin":
-                navigate('/sign-in')
-                break
-            case "forgotPassword":
-                navigate('/forgot-password')
-                break
-            default :
-                navigate('/')
-                break
-        }
-    }
+const onChangePassword = () => {
+  if (
+    !password ||
+    !confirmPassword ||
+    (password && confirmPassword && password !== confirmPassword)
+  ) {
+    submitError["passwordError"] = true;
+  } else {
+    submitError = {};
+    Request.post("/change-password", {
+      password: password,
+      passwordToken: props.id,
+    })
+      .then((res) => {
+        submitSuccess = { emailSent: true };
+        onSwitchPage("login");
+      })
+      .catch((err) => {
+        console.log(err);
+        submitError["invalidToken"] = true;
+      });
+  }
+};
+
+const onSwitchPage = (page) => {
+  email = "";
+  password = "";
+  confirmPassword = "";
+  username = "";
+  switch (page) {
+    case "login":
+      navigate("/login");
+      break;
+    case "signin":
+      navigate("/sign-in");
+      break;
+    case "forgotPassword":
+      navigate("/forgot-password");
+      break;
+    default:
+      navigate("/");
+      break;
+  }
+};
 </script>
 
 <div class="LoginPage">

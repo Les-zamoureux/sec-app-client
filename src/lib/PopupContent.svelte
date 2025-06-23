@@ -1,22 +1,22 @@
 <script>
-    import { openPopup, closePopup } from "../stores/store";
-    import Button from "./Button.svelte";
-    import Heading from "./Heading.svelte";
-    import { t } from "svelte-intl-precompile";
+import { openPopup, closePopup } from "../stores/store";
+import Button from "./Button.svelte";
+import Heading from "./Heading.svelte";
+import { t } from "svelte-intl-precompile";
 
-    let props = $props()
+let props = $props();
 
-    const onCancelClick = () => {
-        closePopup()
-    }
+const onCancelClick = () => {
+  closePopup();
+};
 
-    const onSubmitClick = () => {
-        console.log("submit")
-        if(props.onSubmitClick) {
-            props.onSubmitClick()
-            closePopup()
-        }
-    }
+const onSubmitClick = () => {
+  console.log("submit");
+  if (props.onSubmitClick) {
+    props.onSubmitClick();
+    closePopup();
+  }
+};
 </script>
 
 <div class={"PopupContent" + (props.size ? props.size : " small")}>

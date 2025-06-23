@@ -1,9 +1,9 @@
-import { mount } from 'svelte'
-import './app.scss'
-import Index from './Index.svelte'
+import { mount } from "svelte";
+import "./app.scss";
+import Index from "./Index.svelte";
 
 const app = mount(Index, {
-  target: document.getElementById('app'),
-})
+  target: document.getElementById("app"),
+});
 
-export default app
+export default app;

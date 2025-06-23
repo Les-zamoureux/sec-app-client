@@ -1,29 +1,29 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import Heading from "../../lib/Heading.svelte";
-    import Body from "../../lib/Body.svelte";
-    import ProductsIcon from './../../assets/canabis-icon.svg'
-    import UsersIcon from './../../assets/users.svg'
-    import LogsIcon from './../../assets/logs.svg'
-    import FaqIcon from './../../assets/faq.svg'
-    import { navigate } from "svelte-routing";
+import { t } from "svelte-intl-precompile";
+import Heading from "../../lib/Heading.svelte";
+import Body from "../../lib/Body.svelte";
+import ProductsIcon from "./../../assets/canabis-icon.svg";
+import UsersIcon from "./../../assets/users.svg";
+import LogsIcon from "./../../assets/logs.svg";
+import FaqIcon from "./../../assets/faq.svg";
+import { navigate } from "svelte-routing";
 
-    let props = $props()
+let props = $props();
 
-    const cards = [
-        {name:"products", image:ProductsIcon},
-        {name:"faq", image:FaqIcon},
-        {name:"users", image:UsersIcon},
-        {name:"logs", image:LogsIcon},
-    ]
+const cards = [
+  { name: "products", image: ProductsIcon },
+  { name: "faq", image: FaqIcon },
+  { name: "users", image: UsersIcon },
+  { name: "logs", image: LogsIcon },
+];
 
-    $effect(()=>{
-        console.log(props)
-    })
+$effect(() => {
+  console.log(props);
+});
 
-    const switchPage = (page) => {
-        navigate('/admin/'+page)
-    }
+const switchPage = (page) => {
+  navigate("/admin/" + page);
+};
 </script>
 
 <div class="Home">

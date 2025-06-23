@@ -1,18 +1,18 @@
 <script>
-    import Body from "./Body.svelte";
-    import {t} from "svelte-intl-precompile"
+import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
 
-    let props = $props()
+let props = $props();
 
-    let hover = $state(false)
+let hover = $state(false);
 
-    let classnames = $state("Button")
-    if(props.size) classnames += ' ' + (props.size ? props.size : "medium")
-    classnames += props.type ? (' type' + props.type) : " type1"
+let classnames = $state("Button");
+if (props.size) classnames += " " + (props.size ? props.size : "medium");
+classnames += props.type ? " type" + props.type : " type1";
 
-    const onClickButton = () => {
-        if(props.onClick && !props.disabled) props.onClick()
-    }
+const onClickButton = () => {
+  if (props.onClick && !props.disabled) props.onClick();
+};
 </script>
 
 {#if ((props.label || props.icon) && props.onClick)}

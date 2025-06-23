@@ -1,10 +1,10 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import Body from "./Body.svelte";
-    import { navigate } from "svelte-routing";
+import { t } from "svelte-intl-precompile";
+import Body from "./Body.svelte";
+import { navigate } from "svelte-routing";
 
-    let props = $props()
-    let hover = $state(null)
+let props = $props();
+let hover = $state(null);
 </script>
 
 <div class="Tabs">

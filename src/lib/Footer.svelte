@@ -1,7 +1,6 @@
 <script>
-    import Body from "./Body.svelte";
-    import { t } from "svelte-intl-precompile";
-
+import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
 </script>
 
 <div class="Footer">

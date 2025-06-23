@@ -1,18 +1,21 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import Body from "./Body.svelte";
-    import TableCase from "./TableCase.svelte";
+import { t } from "svelte-intl-precompile";
+import Body from "./Body.svelte";
+import TableCase from "./TableCase.svelte";
 
-    let props = $props()
+let props = $props();
 
-    const getColumnsTemplate = () => {
-        let gridTemplate = props.count ? "50px " : ""
-        for(let i = 0; i < props.columns.length; i++){
-            let col = props.columns[i]
-            gridTemplate += (col.size + (col.isFixed ? "px":"fr") + (i === props.columns.length-1 ? "" : " "))
-        }
-        return gridTemplate
-    }
+const getColumnsTemplate = () => {
+  let gridTemplate = props.count ? "50px " : "";
+  for (let i = 0; i < props.columns.length; i++) {
+    let col = props.columns[i];
+    gridTemplate +=
+      col.size +
+      (col.isFixed ? "px" : "fr") +
+      (i === props.columns.length - 1 ? "" : " ");
+  }
+  return gridTemplate;
+};
 </script>
 
 {#if props.columns}

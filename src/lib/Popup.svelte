@@ -1,8 +1,8 @@
 <script>
-    import { popupContent } from "./../stores/store";
-    import ConfirmPopup from "./popups/ConfirmPopup.svelte";
-    
-    let props = $props()
+import { popupContent } from "./../stores/store";
+import ConfirmPopup from "./popups/ConfirmPopup.svelte";
+
+let props = $props();
 </script>
 
 <div class={"Popup" + ($popupContent !== null ? " open" : "")}>

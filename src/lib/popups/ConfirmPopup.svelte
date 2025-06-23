@@ -1,15 +1,15 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import Body from "../Body.svelte";
-    import PopupContent from "../PopupContent.svelte";
-    import { closePopup } from "../../stores/store";
+import { t } from "svelte-intl-precompile";
+import Body from "../Body.svelte";
+import PopupContent from "../PopupContent.svelte";
+import { closePopup } from "../../stores/store";
 
-    let props = $props()
+let props = $props();
 
-    const onConfirm = () => {
-        if(props.onSubmitClick) props.onSubmitClick()
-        closePopup()
-    }
+const onConfirm = () => {
+  if (props.onSubmitClick) props.onSubmitClick();
+  closePopup();
+};
 </script>
 
 <div class="ConfirmPopup">

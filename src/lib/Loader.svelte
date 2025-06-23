@@ -1,9 +1,9 @@
 <script>
-    import LoaderIcon from './../assets/load.svg'
-    import Body from './Body.svelte';
-    import { t } from 'svelte-intl-precompile';
-    
-    let props = $props()
+import LoaderIcon from "./../assets/load.svg";
+import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
+
+let props = $props();
 </script>
 
 <div class="Loader">

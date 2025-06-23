@@ -1,29 +1,34 @@
 <script>
-    import Request from "../../utils/Request";
-    import Input from "../Input.svelte";
-    import PopupContent from "../PopupContent.svelte";
+import Request from "../../utils/Request";
+import Input from "../Input.svelte";
+import PopupContent from "../PopupContent.svelte";
 
-    let props = $props()
+let props = $props();
 
-    let password = $state("")
-    let newPassword = $state("")
-    let confirmNewPassword = $state("")
-    let error = $state(null)
+let password = $state("");
+let newPassword = $state("");
+let confirmNewPassword = $state("");
+let error = $state(null);
 
-    const save = () => {
-        if(!password || !newPassword || !confirmNewPassword) return
+const save = () => {
+  if (!password || !newPassword || !confirmNewPassword) return;
 
-        if(newPassword === confirmNewPassword){
-            Request.put('/user/change-password', {oldPassword : password, newPassword : newPassword}).then((res) => {
-                error = null
-            }).catch(err => {
-                console.log(err)
-                error = "invalidPassword"
-            })
-        }else{
-            error = "passwordError"
-        }
-    }
+  if (newPassword === confirmNewPassword) {
+    Request.put("/user/change-password", {
+      oldPassword: password,
+      newPassword: newPassword,
+    })
+      .then((res) => {
+        error = null;
+      })
+      .catch((err) => {
+        console.log(err);
+        error = "invalidPassword";
+      });
+  } else {
+    error = "passwordError";
+  }
+};
 </script>
 
 <div class="PasswordPopup">

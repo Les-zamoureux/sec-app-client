@@ -1,18 +1,18 @@
 <script>
-    import Star from './../assets/star.svg'
-    import Half from './../assets/half.svg'
-    import Empty from './../assets/empty.svg'
-    import Body from './Body.svelte';
-    
-    let props = $props()
+import Star from "./../assets/star.svg";
+import Half from "./../assets/half.svg";
+import Empty from "./../assets/empty.svg";
+import Body from "./Body.svelte";
 
-    const onStarClick = (e, id) => {
-        if(props.onClick && !props.disabled) {
-            let width = props.large ? 40 : 15
-            let half = e.offsetX <= width / 2
-            props.onClick(half ? id-0.5 : id)
-        }
-    }
+let props = $props();
+
+const onStarClick = (e, id) => {
+  if (props.onClick && !props.disabled) {
+    let width = props.large ? 40 : 15;
+    let half = e.offsetX <= width / 2;
+    props.onClick(half ? id - 0.5 : id);
+  }
+};
 </script>
 
 <div class={"Stars" + (props.left ? ' left' : "") + (props.onClick ? ' clickable' : "") + (props.large ? ' large' : "")}>

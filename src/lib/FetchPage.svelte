@@ -1,28 +1,27 @@
 <script>
-    import Heading from "./Heading.svelte";
-    import { t } from "svelte-intl-precompile";
-    import Input from "./Input.svelte";
-    import Button from "./Button.svelte";
-    import Table from "./Table.svelte";
-    import Request from "../utils/Request";
+import Heading from "./Heading.svelte";
+import { t } from "svelte-intl-precompile";
+import Input from "./Input.svelte";
+import Button from "./Button.svelte";
+import Table from "./Table.svelte";
+import Request from "../utils/Request";
 
-    let props = $props()
-    let search = $state("")
-    let filteredData = $state(props.data)
+let props = $props();
+let search = $state("");
+let filteredData = $state(props.data);
 
-    const addData = () => {
-        if(props.addData) props.addData()
-    }
+const addData = () => {
+  if (props.addData) props.addData();
+};
 
-    $effect(()=>{
-        console.log(props.data)
-        if(search){
-            filteredData = props.data.filter(d => props.filterData(d, search))
-        }else{
-            filteredData = props.data
-        }
-    })
-
+$effect(() => {
+  console.log(props.data);
+  if (search) {
+    filteredData = props.data.filter((d) => props.filterData(d, search));
+  } else {
+    filteredData = props.data;
+  }
+});
 </script>
 
 <div class="FetchPage">

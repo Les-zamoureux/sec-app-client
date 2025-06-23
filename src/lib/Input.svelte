@@ -1,36 +1,40 @@
 <script>
-    import Body from "./Body.svelte";
-    import SearchIcon from "./../assets/search.svg"
-    import UpIcon from "./../assets/chevron-up.svg"
-    import DownIcon from "./../assets/chevron-down.svg"
+import Body from "./Body.svelte";
+import SearchIcon from "./../assets/search.svg";
+import UpIcon from "./../assets/chevron-up.svg";
+import DownIcon from "./../assets/chevron-down.svg";
 
-    import {t} from "svelte-intl-precompile"
+import { t } from "svelte-intl-precompile";
 
-    let props = $props()
-    
-    let focus = $state(false)
+let props = $props();
 
-    const onChangeValue = (e) => {
-        if(props.onChange) props.onChange(e.target.value)
-    }
+let focus = $state(false);
 
-    const onKeyPress = (e) => {
-        if(e.code === "Enter" && props.onEnterPress) props.onEnterPress()
-    }
+const onChangeValue = (e) => {
+  if (props.onChange) props.onChange(e.target.value);
+};
 
-    const plus = () => {
-        let newValue = Number(Number(props.value) + (props.step ? Number(props.step) : 1)).toFixed(props.step ? (String(props.step).length - 2) : 0)
-        if((props.max != null && newValue <= props.max) || props.max == null){
-            props.onChange(newValue)
-        }
-    }
+const onKeyPress = (e) => {
+  if (e.code === "Enter" && props.onEnterPress) props.onEnterPress();
+};
 
-    const minus = () => {
-        let newValue = Number(Number(props.value) - (props.step ? Number(props.step) : 1)).toFixed(props.step ? (String(props.step).length - 2) : 0)
-        if((props.min != null && newValue >= props.min) || props.min == null){
-            props.onChange(newValue)
-        }
-    }
+const plus = () => {
+  let newValue = Number(
+    Number(props.value) + (props.step ? Number(props.step) : 1),
+  ).toFixed(props.step ? String(props.step).length - 2 : 0);
+  if ((props.max != null && newValue <= props.max) || props.max == null) {
+    props.onChange(newValue);
+  }
+};
+
+const minus = () => {
+  let newValue = Number(
+    Number(props.value) - (props.step ? Number(props.step) : 1),
+  ).toFixed(props.step ? String(props.step).length - 2 : 0);
+  if ((props.min != null && newValue >= props.min) || props.min == null) {
+    props.onChange(newValue);
+  }
+};
 </script>
 
 <div class={"InputContainer"}>

@@ -1,46 +1,64 @@
 <script>
-    import Body from "../lib/Body.svelte";
-    import Heading from "../lib/Heading.svelte";
-    import List from "../lib/List.svelte";
-    import Page from "../lib/Page.svelte";
-    import Input from "../lib/Input.svelte";
-    import { t } from "svelte-intl-precompile";
-    import products from "../data/products";
-    import { navigate } from "svelte-routing";
+import Body from "../lib/Body.svelte";
+import Heading from "../lib/Heading.svelte";
+import List from "../lib/List.svelte";
+import Page from "../lib/Page.svelte";
+import Input from "../lib/Input.svelte";
+import { t } from "svelte-intl-precompile";
+import products from "../data/products";
+import { navigate } from "svelte-routing";
 
-    let props = $props()
+let props = $props();
 
-    let filteredData = $state(products)
-    let search = $state("")
-    let tagFilter = $state([])
-    let tagHover = $state()
+let filteredData = $state(products);
+let search = $state("");
+let tagFilter = $state([]);
+let tagHover = $state();
 
-    const tags = ['weed', 'hash', 'ice-o-lator', 'weed-flower', 'traditional-hash', 'modern-hash']
+const tags = [
+  "weed",
+  "hash",
+  "ice-o-lator",
+  "weed-flower",
+  "traditional-hash",
+  "modern-hash",
+];
 
-    $effect(()=>{
-        if(search !== '' || tagFilter.length !== 0){
-            filteredData = products.filter((p) => {
-                let filtered = false
-                if((search !== '' && $t(p.name).toLowerCase().includes(search.toLowerCase())) || search === '') filtered = true
-                else filtered = false
+$effect(() => {
+  if (search !== "" || tagFilter.length !== 0) {
+    filteredData = products.filter((p) => {
+      let filtered = false;
+      if (
+        (search !== "" &&
+          $t(p.name).toLowerCase().includes(search.toLowerCase())) ||
+        search === ""
+      )
+        filtered = true;
+      else filtered = false;
 
-                if(((tagFilter.length !== 0 && tagFilter.find(f => f === p.type || f === p.category)) || tagFilter.length === 0) && filtered) filtered = true
-                else filtered = false
+      if (
+        ((tagFilter.length !== 0 &&
+          tagFilter.find((f) => f === p.type || f === p.category)) ||
+          tagFilter.length === 0) &&
+        filtered
+      )
+        filtered = true;
+      else filtered = false;
 
-                return filtered
-            })
-        }else filteredData = products
-    })
+      return filtered;
+    });
+  } else filteredData = products;
+});
 
-    const onNavigate = (product) => {
-        navigate('/shop/' + product.id)
-    }
+const onNavigate = (product) => {
+  navigate("/shop/" + product.id);
+};
 
-    const onTagClick = (tag) => {
-        let index = tagFilter.indexOf(tag)
-        if(index >= 0) tagFilter.splice(index, 1)
-        else tagFilter.push(tag)
-    }
+const onTagClick = (tag) => {
+  let index = tagFilter.indexOf(tag);
+  if (index >= 0) tagFilter.splice(index, 1);
+  else tagFilter.push(tag);
+};
 </script>
 
 <div class="ShopPage">

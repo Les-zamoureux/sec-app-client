@@ -1,9 +1,9 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import Body from "./Body.svelte";
-    import Button from "./Button.svelte";
-    
-    let props = $props()
+import { t } from "svelte-intl-precompile";
+import Body from "./Body.svelte";
+import Button from "./Button.svelte";
+
+let props = $props();
 </script>
 
 {#if props.column && props.column.type}
@@ -35,6 +35,10 @@
         min-width: 0;
         padding-left: 10px;
         box-sizing: border-box;
+
+        img{
+            width: 100%;
+        }
 
         .Actions{
             display: flex;

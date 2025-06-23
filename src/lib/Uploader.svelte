@@ -1,26 +1,27 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import CrossIcon from "./../assets/cross.svg";
-    import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
+import CrossIcon from "./../assets/cross.svg";
+import Body from "./Body.svelte";
 
-    let props = $props()
+let props = $props();
 
-    let imageUrl = $state(props.image)
+let imageUrl = $state("");
 
-    $effect(()=>{
-        if(imageUrl === ""){
-            if(props.image) imageUrl = import.meta.env.VITE_SERVER_URL + '/' + props.image
-            else imageUrl = null
-        }
-    })
+$effect(() => {
+  if (imageUrl === "") {
+    if (props.image){
+      imageUrl = (import.meta.env.VITE_SERVER_URL + props.image);}
+    else imageUrl = null;
+  }
+});
 
-    const changeImage = (image=null) => {
-        let imageUrlTmp
-        if(image) imageUrlTmp = URL.createObjectURL(image)
-        imageUrl = imageUrlTmp
-        console.log(imageUrl)
-        if(props.setImage) props.setImage(image)
-    }
+const changeImage = (image = null) => {
+  let imageUrlTmp;
+  if (image) imageUrlTmp = URL.createObjectURL(image);
+  imageUrl = imageUrlTmp;
+  console.log(imageUrl);
+  if (props.setImage) props.setImage(image);
+};
 </script>
 
 <div class="UploaderContent">

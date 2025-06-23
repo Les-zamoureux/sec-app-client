@@ -1,50 +1,50 @@
 <script>
-    import Body from "../lib/Body.svelte";
-    import Page from "../lib/Page.svelte";
-    import products from "../data/products";
-    import { locale, t } from "svelte-intl-precompile";
-    import Heading from "../lib/Heading.svelte";
-    import Stars from "../lib/Stars.svelte";
-    import Input from "../lib/Input.svelte";
-    import Button from "../lib/Button.svelte";
-    import PuceIcon from "../assets/puce.svg";
-    import { timeElapsed } from "../utils/helpers";
+import Body from "../lib/Body.svelte";
+import Page from "../lib/Page.svelte";
+import products from "../data/products";
+import { locale, t } from "svelte-intl-precompile";
+import Heading from "../lib/Heading.svelte";
+import Stars from "../lib/Stars.svelte";
+import Input from "../lib/Input.svelte";
+import Button from "../lib/Button.svelte";
+import PuceIcon from "../assets/puce.svg";
+import { timeElapsed } from "../utils/helpers";
 
-    let props = $props()
-    let data = $state(null)
+let props = $props();
+let data = $state(null);
 
-    let date = new Date()
-    date.setDate(date.getDate() +1)
+let date = new Date();
+date.setDate(date.getDate() + 1);
 
-    let quantity = $state(1)
-    let rate = $state(1)
-    let message = $state("")
+let quantity = $state(1);
+let rate = $state(1);
+let message = $state("");
 
-    $effect(() => {
-        if(products.length > props.id){
-            data = products[props.id]
-        }
-    })
+$effect(() => {
+  if (products.length > props.id) {
+    data = products[props.id];
+  }
+});
 
-    const addToCart = () => {
-        locale.set('fr');
-        console.log('addToCart')
-    }
+const addToCart = () => {
+  locale.set("fr");
+  console.log("addToCart");
+};
 
-    const buyNow = () => {
-        locale.set('en');
-        console.log('Buy Now')
-    }
+const buyNow = () => {
+  locale.set("en");
+  console.log("Buy Now");
+};
 
-    const changeRate = (starSelected) => {
-        rate = starSelected+1
-    }
+const changeRate = (starSelected) => {
+  rate = starSelected + 1;
+};
 
-    const sendMessage = () => {
-        console.log("Message : ", rate, message)
-        rate = 1
-        message = ""
-    }
+const sendMessage = () => {
+  console.log("Message : ", rate, message);
+  rate = 1;
+  message = "";
+};
 </script>
 
 <div class="ProductPage">

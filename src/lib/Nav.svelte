@@ -1,45 +1,44 @@
 <script>
-    import { navigate } from 'svelte-routing';
-    import Logo from './../assets/logo.svg'
-    import ProfileIcon from './../assets/person.svg'
-    import CartIcon from './../assets/cart.svg'
-    import LikeIcon from './../assets/heart.svg'
-    import AdminIcon from './../assets/admin.svg'
-    import ProfileIconPrimary from './../assets/person-primary.svg'
-    import CartIconPrimary from './../assets/cart-primary.svg'
-    import LikeIconPrimary from './../assets/heart-primary.svg'
-    import AdminPrimaryIcon from './../assets/admin-primary.svg'
-    import BurgerIcon from './../assets/burger.svg'
-    import CrossIcon from './../assets/cross.svg'
-    import BurgerIconPrimary from './../assets/burger-primary.svg'
-    import CrossIconPrimary from './../assets/cross-primary.svg'
-    import Body from './Body.svelte';
-    import { t } from 'svelte-intl-precompile';
-    import Button from './Button.svelte';
-    import { logged, currentPage } from '../stores/store';
+import { navigate } from "svelte-routing";
+import Logo from "./../assets/logo.svg";
+import ProfileIcon from "./../assets/person.svg";
+import CartIcon from "./../assets/cart.svg";
+import LikeIcon from "./../assets/heart.svg";
+import AdminIcon from "./../assets/admin.svg";
+import ProfileIconPrimary from "./../assets/person-primary.svg";
+import CartIconPrimary from "./../assets/cart-primary.svg";
+import LikeIconPrimary from "./../assets/heart-primary.svg";
+import AdminPrimaryIcon from "./../assets/admin-primary.svg";
+import BurgerIcon from "./../assets/burger.svg";
+import CrossIcon from "./../assets/cross.svg";
+import BurgerIconPrimary from "./../assets/burger-primary.svg";
+import CrossIconPrimary from "./../assets/cross-primary.svg";
+import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
+import Button from "./Button.svelte";
+import { logged, currentPage } from "../stores/store";
 
-    let props = $props()
+let props = $props();
 
-    let options = [
-        {name:"shop", link:"/shop"},
-        {name:"about", link:"/about"},
-        {name:"home", image:Logo, link:"/"},
-        {name:"faq", link:"/faq"},
-        {name:"contact", link:"/contact"}
-    ]
+let options = [
+  { name: "shop", link: "/shop" },
+  { name: "about", link: "/about" },
+  { name: "home", image: Logo, link: "/" },
+  { name: "faq", link: "/faq" },
+  { name: "contact", link: "/contact" },
+];
 
-    let open = $state(false)
-    let noTransition = $state(false)
-    let mobile = $state(window.innerWidth < 1024)
+let open = $state(false);
+let noTransition = $state(false);
+let mobile = $state(window.innerWidth < 1024);
 
-    let timeout = null
+let timeout = null;
 
-    const onNavigate = (page, link) => {
-        open = false
-        currentPage.set(page)
-        navigate(link)
-    }
-
+const onNavigate = (page, link) => {
+  open = false;
+  currentPage.set(page);
+  navigate(link);
+};
 </script>
 
 <svelte:window

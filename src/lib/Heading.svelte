@@ -1,10 +1,10 @@
 <script>
-    let props = $props()
+let props = $props();
 
-    let classname = $state("Heading")
-    if(props.right) classname += ' right'
-    classname += props.size ? " " + props.size : ' h1'
-    classname += props.center ? " center" : ''
+let classname = $state("Heading");
+if (props.right) classname += " right";
+classname += props.size ? " " + props.size : " h1";
+classname += props.center ? " center" : "";
 </script>
 
 {#if props.size === "h2"}

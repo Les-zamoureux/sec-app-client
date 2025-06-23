@@ -3,59 +3,63 @@
 {/snippet}
 
 <script>
-    import Body from "../lib/Body.svelte";
-    import { t } from "svelte-intl-precompile";
-    import Button from "../lib/Button.svelte";
-    import ConfirmPopup from "../lib/popups/ConfirmPopup.svelte";
-    import Page from "../lib/Page.svelte";
-    import { openPopup } from "../stores/store";
-    import Request from "../utils/Request";
-    import PersonIcon from "./../assets/person.svg"
-    import EditIcon from "./../assets/edit.svg"
-    import EditPrimaryIcon from "./../assets/edit-primary.svg"
-    import UsernamePopup from "../lib/popups/UsernamePopup.svelte";
-    import PasswordPopup from "../lib/popups/PasswordPopup.svelte";
-    import Heading from "../lib/Heading.svelte";
-    import Loader from "../lib/Loader.svelte";
+import Body from "../lib/Body.svelte";
+import { t } from "svelte-intl-precompile";
+import Button from "../lib/Button.svelte";
+import ConfirmPopup from "../lib/popups/ConfirmPopup.svelte";
+import Page from "../lib/Page.svelte";
+import { openPopup } from "../stores/store";
+import Request from "../utils/Request";
+import PersonIcon from "./../assets/person.svg";
+import EditIcon from "./../assets/edit.svg";
+import EditPrimaryIcon from "./../assets/edit-primary.svg";
+import UsernamePopup from "../lib/popups/UsernamePopup.svelte";
+import PasswordPopup from "../lib/popups/PasswordPopup.svelte";
+import Heading from "../lib/Heading.svelte";
+import Loader from "../lib/Loader.svelte";
 
-    let props = $props()
-    let orders = $state([])
-    let fetchingOrders = $state(true)
+let props = $props();
+let orders = $state([]);
+let fetchingOrders = $state(true);
 
-    const fetchOrders = () => {
-        fetchingOrders = true
-        Request.get('/orders').then(res => {
-            orders = res
-            fetchingOrders = false
-        }).catch(err => {
-            console.log(err)
-        })
-    }
+const fetchOrders = () => {
+  fetchingOrders = true;
+  Request.get("/orders")
+    .then((res) => {
+      orders = res;
+      fetchingOrders = false;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-    const deleteAccount = () => {
-        Request.delete('/user').then((res) => {
-            if(res) props.disconnect()
-        }).catch(err => {
-            console.log(err)
-            return
-        })
-    }
+const deleteAccount = () => {
+  Request.delete("/user")
+    .then((res) => {
+      if (res) props.disconnect();
+    })
+    .catch((err) => {
+      console.log(err);
+      return;
+    });
+};
 
-    const onDeleteAccount = () => {
-        openPopup(ConfirmPopup, {
-            title:"profile.delete.title", 
-            description:"profile.delete.description", 
-            onSubmitClick:deleteAccount
-        })
-    }
+const onDeleteAccount = () => {
+  openPopup(ConfirmPopup, {
+    title: "profile.delete.title",
+    description: "profile.delete.description",
+    onSubmitClick: deleteAccount,
+  });
+};
 
-    const onEditUsername = () => {
-        openPopup(UsernamePopup, {})
-    }
+const onEditUsername = () => {
+  openPopup(UsernamePopup, {});
+};
 
-    const onEditPassword = () => {
-        openPopup(PasswordPopup, {})
-    }
+const onEditPassword = () => {
+  openPopup(PasswordPopup, {});
+};
 </script>
 
 <div class="ProfilePage">

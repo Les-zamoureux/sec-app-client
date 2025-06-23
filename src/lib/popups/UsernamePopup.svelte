@@ -1,23 +1,25 @@
 <script>
-    import Request from "../../utils/Request";
-    import Input from "../Input.svelte";
-    import PopupContent from "../PopupContent.svelte";
+import Request from "../../utils/Request";
+import Input from "../Input.svelte";
+import PopupContent from "../PopupContent.svelte";
 
-    let props = $props()
+let props = $props();
 
-    let username = $state(window.localStorage.getItem('username'))
-    let error = $state(null)
+let username = $state(window.localStorage.getItem("username"));
+let error = $state(null);
 
-    const save = () => {
-        if(username !== window.localStorage.getItem('username') && username){
-            Request.post('/user', {username:username}).then(res => {
-                error = null
-                window.localStorage.setItem('username', username)
-            }).catch(err => {
-                error = "sign-in.username-already-use"
-            })
-        }
-    }
+const save = () => {
+  if (username !== window.localStorage.getItem("username") && username) {
+    Request.post("/user", { username: username })
+      .then((res) => {
+        error = null;
+        window.localStorage.setItem("username", username);
+      })
+      .catch((err) => {
+        error = "sign-in.username-already-use";
+      });
+  }
+};
 </script>
 
 <div class="UsernamePopup">

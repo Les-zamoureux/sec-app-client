@@ -1,13 +1,13 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
+import Body from "./Body.svelte";
 
-    let props = $props()
+let props = $props();
 
-    const onSelected = (option) => {
-        if(props.selected === option) props.onChange(null)
-        else props.onChange(option)
-    }
+const onSelected = (option) => {
+  if (props.selected === option) props.onChange(null);
+  else props.onChange(option);
+};
 </script>
 
 <div class="TagList">

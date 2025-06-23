@@ -1,9 +1,9 @@
 <script>
-    import { t } from "svelte-intl-precompile";
-    let props = $props()
+import { t } from "svelte-intl-precompile";
+let props = $props();
 
-    let classnames = $state("Body")
-    if(props.size) classnames += ' ' + props.size
+let classnames = $state("Body");
+if (props.size) classnames += " " + props.size;
 </script>
 
 <p class={classnames + 
