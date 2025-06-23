@@ -15,6 +15,7 @@
     }
 
     $effect(()=>{
+        console.log(props.data)
         if(search){
             filteredData = props.data.filter(d => props.filterData(d, search))
         }else{
@@ -31,7 +32,9 @@
     <div class="PageContent">
         <div class="ContentSearch">
             <Input placeholder={"table.search"} type={"search"} value={search} onChange={(val) => {search = val}}/>
-            <Button size={'medium'} label={'admin.add-data'} onClick={addData}/>
+            {#if props.addData}
+                <Button size={'medium'} label={'admin.add-data'} onClick={addData}/>
+            {/if}
         </div>
         <div class="ContentTable">  
             <Table data={filteredData} columns={props.columns}/>

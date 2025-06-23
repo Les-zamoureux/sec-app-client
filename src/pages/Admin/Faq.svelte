@@ -92,7 +92,15 @@
 </script>
 
 <div class="Logs">
-    <FetchPage fetching={fetching} data={data} title={"menu.faq"} type={'faq'} columns={columns} addData={addElement} filterData={filterData}/>
+    <FetchPage 
+        fetching={fetching} 
+        data={data} 
+        title={"menu.faq"} 
+        type={'faq'} 
+        columns={columns} 
+        addData={addElement} 
+        filterData={filterData}
+    />
 </div>
 
 <style lang="scss">

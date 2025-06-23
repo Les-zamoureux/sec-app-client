@@ -70,6 +70,8 @@
         "logs":"Un aprçu des logs du serveur",
 
         "add-data":"Ajouter",
+        "true":"Oui",
+        "false":"Non",
 
         "faq":{
             "answer":"Réponse",
@@ -80,6 +82,28 @@
             "edit-popup":"Mise à jour d'un élément",
             "answer-placeholder":"Saisir la réponse",
             "question-placeholder":"Saisir la question"
+        },
+
+        "logs":{
+            "method":"Méthode",
+            "url":"URL",
+            "user-id":"Id de l'utilisateur"
+        },
+
+        "product":{
+            "image":"Image",
+            "category":"Categorie",
+            "type":"Type",
+            "stock":"Stock",
+            "price":"Prix (/g)",
+            "name":"Nom"
+        },
+
+        "users":{
+            "username":"Identifiant",
+            "is-admin":"Admin",
+            "creation-date":"Date de création",
+            "verification-date":"Date de vérification"
         }
     },
 

@@ -11,7 +11,11 @@
     {#if props.column.type === "image"}
         <img src={import.meta.env.VITE_SERVER_URL + props.data} alt="Image de la ligne">
     {:else if props.column.type === "date"}
-       <Body>{props.data}</Body>
+       {#if props.data}
+        <Body>{new Date(props.data).toLocaleDateString()}</Body>
+    {/if}
+    {:else if props.column.type === "boolean"}
+       <Body>{$t(props.data ? "admin.true" : "admin.false")}</Body>
     {:else if props.column.type === "actions" && props.column.actions && props.column.actions.length > 0}
         <div class="Actions">
             {#each props.column.actions as action}
