@@ -31,7 +31,7 @@ let effects = $state(
   props.data?.effects?.map((val) => val.name).join(";") || "",
 );
 
-let disabled = $state(false)
+let disabled = $state(false);
 
 const categoriesOptions = [
   "ice-o-lator",
@@ -43,8 +43,8 @@ const categoriesOptions = [
 const typesOptions = ["hash", "weed"];
 
 const isDisabled = () => {
-  console.log(props.data.aspects.every((val) => aspects.includes(val.name)))
-  if (  
+  console.log(props.data.aspects.every((val) => aspects.includes(val.name)));
+  if (
     !image ||
     !name ||
     !description ||
@@ -61,7 +61,7 @@ const isDisabled = () => {
     !effects
   )
     return true;
-  console.log('cbon')
+  console.log("cbon");
   if (
     props.data &&
     image === props.data.image &&
@@ -84,14 +84,14 @@ const isDisabled = () => {
 };
 
 const save = () => {
-  console.log(isDisabled())
+  console.log(isDisabled());
   if (props.save && !isDisabled()) {
     const product = {
       id: props.data ? props.data?.id : null,
       name: name,
       description: description,
       genetics: genetics,
-      categories: [{name:category}],
+      categories: [{ name: category }],
       type: type,
       image: image,
       imageUpdated: image !== props.data?.image,
@@ -113,7 +113,7 @@ const save = () => {
       }),
     };
 
-    console.log(product, props.data?.image, image)
+    console.log(product, props.data?.image, image);
 
     props.save(product);
   }

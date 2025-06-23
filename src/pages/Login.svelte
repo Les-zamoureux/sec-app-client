@@ -25,7 +25,7 @@ let submitSuccess = $state({});
 
 $effect(() => {
   if ($currentPage === "verifyAccount") {
-    Request.post("/user/verify/"+ props.id)
+    Request.post("/user/verify/" + props.id)
       .then((res) => {
         if (res) {
           submitError = {};

@@ -35,23 +35,28 @@ const updateElement = (data) => {
   openPopup(AddProductPopup, {
     data: data,
     save: (object) => {
-      Request.put("/product/" + data.id, { ...object, image: object.imageUpdated ? null : object.image }).then(res => {
-        if(object.imageUpdated){
-          let productID = object.id;
-          let formData = new FormData();
-          formData.append("image", object.image);
-          Request.post("/product/" + productID + "/image", formData)
-            .then((res) => {
-              console.log(res);
-              fetchElements();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      }).catch(err => {
-        console.log(err)
+      Request.put("/product/" + data.id, {
+        ...object,
+        image: object.imageUpdated ? null : object.image,
       })
+        .then((res) => {
+          if (object.imageUpdated) {
+            let productID = object.id;
+            let formData = new FormData();
+            formData.append("image", object.image);
+            Request.post("/product/" + productID + "/image", formData)
+              .then((res) => {
+                console.log(res);
+                fetchElements();
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
 };
@@ -59,7 +64,7 @@ const updateElement = (data) => {
 const addElement = () => {
   openPopup(AddProductPopup, {
     save: (object) => {
-      Request.post("/product", { ...object, color:"green", image: null })
+      Request.post("/product", { ...object, color: "green", image: null })
         .then((res) => {
           let productID = res.productID;
           let formData = new FormData();

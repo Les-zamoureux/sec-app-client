@@ -9,9 +9,9 @@ let imageUrl = $state("");
 
 $effect(() => {
   if (imageUrl === "") {
-    if (props.image){
-      imageUrl = (import.meta.env.VITE_SERVER_URL + props.image);}
-    else imageUrl = null;
+    if (props.image) {
+      imageUrl = import.meta.env.VITE_SERVER_URL + props.image;
+    } else imageUrl = null;
   }
 });
 
