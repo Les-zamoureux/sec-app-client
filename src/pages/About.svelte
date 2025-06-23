@@ -1,12 +1,12 @@
 <script>
-    import { Link } from "svelte-routing";
-    import Page from "../lib/Page.svelte";
+import { Link } from "svelte-routing";
+import Page from "../lib/Page.svelte";
 
-    let props = $props()
+let props = $props();
 </script>
 
 <div class="AboutPage">
-    <Page title="about">
+    <Page title="nav.about">
 
     </Page>
 </div>

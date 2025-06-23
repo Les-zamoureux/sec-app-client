@@ -1,44 +1,51 @@
 <script>
-    import { navigate } from 'svelte-routing';
-    import Logo from './../assets/logo.svg'
-    import ProfileIcon from './../assets/person.svg'
-    import CartIcon from './../assets/cart.svg'
-    import LikeIcon from './../assets/heart.svg'
-    import ProfileIconPrimary from './../assets/person-primary.svg'
-    import CartIconPrimary from './../assets/cart-primary.svg'
-    import LikeIconPrimary from './../assets/heart-primary.svg'
-    import BurgerIcon from './../assets/burger.svg'
-    import CrossIcon from './../assets/cross.svg'
-    import BurgerIconPrimary from './../assets/burger-primary.svg'
-    import CrossIconPrimary from './../assets/cross-primary.svg'
-    import Body from './Body.svelte';
-    import { t } from 'svelte-intl-precompile';
-    import Button from './Button.svelte';
-    let props = $props()
+import { navigate } from "svelte-routing";
+import Logo from "./../assets/logo.svg";
+import ProfileIcon from "./../assets/person.svg";
+import CartIcon from "./../assets/cart.svg";
+import LikeIcon from "./../assets/heart.svg";
+import AdminIcon from "./../assets/admin.svg";
+import ProfileIconPrimary from "./../assets/person-primary.svg";
+import CartIconPrimary from "./../assets/cart-primary.svg";
+import LikeIconPrimary from "./../assets/heart-primary.svg";
+import AdminPrimaryIcon from "./../assets/admin-primary.svg";
+import BurgerIcon from "./../assets/burger.svg";
+import CrossIcon from "./../assets/cross.svg";
+import BurgerIconPrimary from "./../assets/burger-primary.svg";
+import CrossIconPrimary from "./../assets/cross-primary.svg";
+import Body from "./Body.svelte";
+import { t } from "svelte-intl-precompile";
+import Button from "./Button.svelte";
+import { logged, currentPage } from "../stores/store";
 
-    let options = [
-        {name:"shop", link:"/shop"},
-        {name:"about", link:"/about"},
-        {name:"home", image:Logo, link:"/"},
-        {name:"faq", link:"/faq"},
-        {name:"contact", link:"/contact"}
-    ]
+let props = $props();
 
-    let open = $state(false)
-    let noTransition = $state(false)
+let options = [
+  { name: "shop", link: "/shop" },
+  { name: "about", link: "/about" },
+  { name: "home", image: Logo, link: "/" },
+  { name: "faq", link: "/faq" },
+  { name: "contact", link: "/contact" },
+];
 
-    let timeout = null
+let open = $state(false);
+let noTransition = $state(false);
+let mobile = $state(window.innerWidth < 1024);
 
-    const onNavigate = (page, link) => {
-        open = false
-        props.setCurrentPage(page)
-        navigate(link)
-    }
+let timeout = null;
 
+const onNavigate = (page, link) => {
+  open = false;
+  currentPage.set(page);
+  navigate(link);
+};
 </script>
 
 <svelte:window
     onresize={(e)=>{
+        if(!mobile && e.target.innerWidth < 1024) mobile = true
+        else if(mobile && e.target.innerWidth > 1024) mobile = false
+        
         clearTimeout(timeout)
         noTransition = true
         if(open) open = false
@@ -58,24 +65,28 @@
         </div>
     </div>
     <div class={"Options" + (open ? " open" : "") + (noTransition ? " noTransition" : "")}>
+        {#if window.localStorage.getItem('isAdmin') === "true"}
+        <div class={"Option admin"}>
+            <Button size={"small"} nude icon={$currentPage === "admin" ? AdminPrimaryIcon : AdminIcon} iconHover={AdminPrimaryIcon} onClick={()=>{onNavigate("admin", "/admin")}}/>
+        </div>
+        {/if}
         {#each options as option}
         <button class={"Option" + (option.image ? ' logo' : '') + (option === options[options.length-1] ? ' last' : '')} onclick={()=>{onNavigate(option.name, option.link)}}>
             {#if option.image}
                 <img src={option.image} alt="Logo">
             {:else if option.name}
-                <Body large primary={props.currentPage === option.name} uppercase hover>{$t("nav." + option.name)}</Body>
+                <Body large primary={$currentPage === option.name} uppercase hover={!mobile}>{$t("nav." + option.name)}</Body>
             {/if}
         </button>
         {/each}
         <div class="icons">
-            {#if props.logged}
-                <Button size={"small"} nude icon={LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
-                <Button size={"small"} nude icon={CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
-                <Button size={"small"} nude icon={ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>
+            {#if $logged}
+                <Button size={"small"} nude icon={$currentPage === "favorites" ? LikeIconPrimary : LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
+                <Button size={"small"} nude icon={$currentPage === "cart" ? CartIconPrimary : CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
+                <Button size={"small"} nude icon={$currentPage === "profile" ? ProfileIconPrimary : ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>
             {:else}
                 <Button type={2} size={'small'} label={'login.title'} onClick={()=>onNavigate('login', '/login')}/>
             {/if}
-            
         </div>
         <div class="closeIcon">
             <Button size={"medium"} nude icon={CrossIcon} iconHover={CrossIconPrimary} onClick={()=>{open=!open}}/>
@@ -164,6 +175,15 @@
                 background-color: transparent;
                 border: none;
                 cursor: pointer;
+
+                &.admin{
+                    position: absolute;
+                    left: 20px;
+                    top: 50%;
+                    width: auto;
+                    margin: 0;
+                    transform: translateY(-50%);
+                }
 
                 img{
                     height: 90px;

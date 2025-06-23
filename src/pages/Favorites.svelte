@@ -1,11 +1,11 @@
 <script>
-    import Page from "../lib/Page.svelte";
+import Page from "../lib/Page.svelte";
 
-    let props = $props()
+let props = $props();
 </script>
 
 <div class="FavoritesPage">
-    <Page title="favorites">
+    <Page title="nav.favorites">
 
     </Page>
 </div>

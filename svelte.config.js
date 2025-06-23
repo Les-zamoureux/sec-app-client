@@ -1,4 +1,4 @@
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import precompileIntl from "svelte-intl-precompile/sveltekit-plugin";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -7,11 +7,9 @@ export default {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
   kit: {
-		target: '#svelte',
-		vite: {
-			plugins: [
-        precompileIntl('locales')
-			]			
-		}		
-	}
-}
+    target: "#svelte",
+    vite: {
+      plugins: [precompileIntl("locales")],
+    },
+  },
+};

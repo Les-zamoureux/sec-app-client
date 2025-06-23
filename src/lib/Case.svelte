@@ -1,14 +1,14 @@
 <script>
-    import Body from "./Body.svelte";
-    import Heading from "./Heading.svelte";
-    import Stars from "./Stars.svelte";
-    import { t } from "svelte-intl-precompile";
+import Body from "./Body.svelte";
+import Heading from "./Heading.svelte";
+import Stars from "./Stars.svelte";
+import { t } from "svelte-intl-precompile";
 
-    let props = $props()
+let props = $props();
 
-    const onClick = () => {
-        if(props.onClick) props.onClick()
-    }
+const onClick = () => {
+  if (props.onClick) props.onClick();
+};
 </script>
 
 <div class="Case" onclick={onClick}>

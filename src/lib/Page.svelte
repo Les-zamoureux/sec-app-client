@@ -1,9 +1,9 @@
 <script>
-    import Footer from "./Footer.svelte";
-    import Heading from "./Heading.svelte";
-    import { t } from "svelte-intl-precompile";
+import Footer from "./Footer.svelte";
+import Heading from "./Heading.svelte";
+import { t } from "svelte-intl-precompile";
 
-    let props = $props()
+let props = $props();
 </script>
 
 <div class={"page" + (props.fullPage ? ' fullPage' : "")}>

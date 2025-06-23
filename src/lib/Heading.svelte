@@ -1,9 +1,10 @@
 <script>
-    let props = $props()
+let props = $props();
 
-    let classname = $state("Heading")
-    if(props.right) classname += ' right'
-    classname += props.size ? " " + props.size : ' h1'
+let classname = $state("Heading");
+if (props.right) classname += " right";
+classname += props.size ? " " + props.size : " h1";
+classname += props.center ? " center" : "";
 </script>
 
 {#if props.size === "h2"}
@@ -31,6 +32,10 @@
 
         &.right{
             text-align: right;
+        }
+
+        &.center{
+            text-align: center;
         }
 
         &.h0{

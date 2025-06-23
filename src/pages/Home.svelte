@@ -1,17 +1,18 @@
 <script>
-    import { navigate } from 'svelte-routing';
-    import Body from '../lib/Body.svelte';
-    import Heading from '../lib/Heading.svelte';
-    import CanabisImage from './../assets/canabis.svg'
-    import Logo from './../assets/logo.svg'
-    import { t } from 'svelte-intl-precompile';
+import { navigate } from "svelte-routing";
+import Body from "../lib/Body.svelte";
+import Heading from "../lib/Heading.svelte";
+import CanabisImage from "./../assets/canabis.svg";
+import Logo from "./../assets/logo.svg";
+import { t } from "svelte-intl-precompile";
+import { currentPage } from "../stores/store";
 
-    let props = $props()
+let props = $props();
 
-    const onSwitchPage = (page) => {
-        props.setCurrentPage(page)
-        navigate('/' + page)
-    }
+const onSwitchPage = (page) => {
+  currentPage.set(page);
+  navigate("/" + page);
+};
 </script>
 
 <div class="HomePage">

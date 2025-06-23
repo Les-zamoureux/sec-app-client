@@ -1,11 +1,11 @@
 <script>
-    import Page from "../lib/Page.svelte";
+import Page from "../lib/Page.svelte";
 
-    let props = $props()
+let props = $props();
 </script>
 
 <div class="ContactPage">
-    <Page title="contact">
+    <Page title="nav.contact">
 
     </Page>
 </div>

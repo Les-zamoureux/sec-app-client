@@ -1,11 +1,11 @@
 <script>
-    import Page from "../lib/Page.svelte";
+import Page from "../lib/Page.svelte";
 
-    let props = $props()
+let props = $props();
 </script>
 
 <div class="CartPage">
-    <Page title="cart">
+    <Page title="nav.cart">
 
     </Page>
 </div>
