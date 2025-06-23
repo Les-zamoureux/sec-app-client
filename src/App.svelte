@@ -23,6 +23,11 @@
       let authToken = window.localStorage.getItem('authToken')
       if(authToken) {
         Request.get("/user/me").then(res => {
+          if(props.tab === "admin" && !res.is_admin){
+            navigate('/')
+            disconnect()
+          }
+
           login(authToken, res.username, res.is_admin)
         }).catch(err => {
           console.log(err)
@@ -79,8 +84,10 @@
           }
           break;
         case 'admin' :
-          if(props.id) navigate('/admin')
           if(window.localStorage.getItem('isAdmin') !== "true") navigate('/')
+          if(props.id && props.id !== "home" && props.id !== "logs" && props.id !== "products" && props.id !== "users" && props.id !== "faq"){
+            navigate('/admin')
+          }
           if($currentPage !== "admin"){
             setCurrentPage('admin')
           }
@@ -184,7 +191,7 @@
         {:else if $currentPage === "product"} <Product id={props.id}/>
         {:else if $currentPage === "about"} <About/>
         {:else if $currentPage === "faq"} <Faq/>
-        {:else if $currentPage === "admin"} <Admin/>
+        {:else if $currentPage === "admin"} <Admin id={props.id}/>
         {:else if $currentPage === "contact"} <Contact/>
         {:else if $currentPage === "favorites"} <Favorites/>
         {:else if $currentPage === "cart"} <Cart/>

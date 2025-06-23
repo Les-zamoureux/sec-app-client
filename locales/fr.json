@@ -50,7 +50,26 @@
         "contact":"Contact",
         "favorites":"Favoris",
         "cart":"Panier",
-        "profile":"Profil"
+        "profile":"Profil",
+        "admin":"Portail adminsitrateur"
+    },
+
+    "menu":{
+        "home":"Accueil",
+        "products":"Produits",
+        "faq":"FAQ",
+        "users":"Utilisateurs",
+        "logs":"Logs"
+    },
+
+    "admin":{
+        "title":"Portail administrateur",
+        "products":"Gérer les stocks et produits de MyWeed",
+        "faq":"Créer et organiser les questions et réponses de la FAQ",
+        "users":"Vu d'essemble sur tous les utilisateurs de MyWeed",
+        "logs":"Un aprçu des logs du serveur",
+
+        "add-data":"Ajouter"
     },
 
     "home":{
