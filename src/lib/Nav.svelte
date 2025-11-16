@@ -195,26 +195,27 @@ const onNavigate = (page, link) => {
             }
         }
 
+        // @media screen and (max-width : 1250px){
+        //     .Options{
+        //         .Option{
+        //             margin: 0 30px;
+        //             width: 80px;
+
+        //             img{
+        //                 height: 80px;
+        //             }
+        //         }
+        //     }
+        // }
+
         @media screen and (max-width : 1250px){
-            .Options{
-                .Option{
-                    margin: 0 30px;
-                    width: 80px;
-
-                    img{
-                        height: 80px;
-                    }
-                }
-            }
-        }
-
-        @media screen and (max-width : 1024px){
             .Options{
                 position:fixed;
                 right: 0;
                 flex-direction: column;
                 width: 300px;
-                height: 100vh;
+                height: 100dvh;
+                overflow-y: auto;
                 transform: translateX(100%);
                 top: 0;
                 justify-content: start;

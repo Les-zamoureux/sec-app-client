@@ -2,7 +2,7 @@
 import { navigate } from "svelte-routing";
 import Body from "../lib/Body.svelte";
 import Heading from "../lib/Heading.svelte";
-import CanabisImage from "./../assets/canabis.svg";
+import CandysBG from "./../assets/bg-logo.jpg";
 import Logo from "./../assets/logo.svg";
 import { t } from "svelte-intl-precompile";
 import { currentPage } from "../stores/store";
@@ -31,10 +31,10 @@ const onSwitchPage = (page) => {
         </div>
         <div class="HomeContent">
             <div class="HomeBackground">
-                <img src={CanabisImage} alt="Marie jeane">
+                <img src={CandysBG} alt="Candys">
             </div>
             <div class="Logo">
-                <img src={Logo} alt="Marie jeane">
+                <img src={Logo} alt="My Sweet Logo">
             </div>
         </div>
         <div class="HomeContent">
@@ -74,6 +74,7 @@ const onSwitchPage = (page) => {
                 justify-content: center;
                 position: relative;
                 height: 600px;
+                margin-top: 60px;
 
                 .HomeBackground{
                     position: absolute;
@@ -83,14 +84,16 @@ const onSwitchPage = (page) => {
                     height: 700px;
                     transform: translate(-50%, -50%);
                     display: flex;
+                    border: 10px solid white;
+                    border-radius: 20px;
                     align-items: center;
                     justify-content: center;
-                    filter: drop-shadow(0 0 200px rgba(30, 175, 42, 0.644));
-                    opacity: .4;
+                    filter: drop-shadow(0 0 200px #EA7AD5);
 
                     img{
                         height: 100%;
                         pointer-events: none;
+                        opacity: .4;
                     }
                 }
 
@@ -118,8 +121,8 @@ const onSwitchPage = (page) => {
 
                 .Logo{
                     z-index: 100;
-                    width: 800px;
-                    height: 400px;
+                    width: 900px;
+                    height: 370px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -131,15 +134,15 @@ const onSwitchPage = (page) => {
                 }
             }
             
-            @media screen and (max-width:1300px){
+            @media screen and (max-width:1375px){
                 .HomeContent{
                     .Logo{
-                        width: 550px;
+                        width: 775px;
                     }
                 }
             }
 
-            @media screen and (max-width:1024px){
+            @media screen and (max-width:1250px){
                 .HomeContent{
                     .ContentItems{
                         .ContentItem{
@@ -155,7 +158,7 @@ const onSwitchPage = (page) => {
                         height: 500px;
                     }
                     .Logo{
-                        height: 300px;
+                        height: 250px;
                     }
                 }
             }
@@ -166,7 +169,7 @@ const onSwitchPage = (page) => {
                         height: 350px;
                     }
                     .Logo{
-                        height: 200px;
+                        height: 150px;
                     }
                 }
             }
@@ -177,7 +180,7 @@ const onSwitchPage = (page) => {
                         height: 300px;
                     }
                     .Logo{
-                        height: 175px;
+                        height: 125px;
                     }
                 }
             }
@@ -193,7 +196,7 @@ const onSwitchPage = (page) => {
                         height: 500px;
                     }
                     .Logo{
-                        height: 300px;
+                        height: 250px;
                     }
                 }
             }
@@ -205,7 +208,7 @@ const onSwitchPage = (page) => {
                         height: 350px;
                     }
                     .Logo{
-                        height: 200px;
+                        height: 150px;
                     }
                 }
             }
@@ -216,7 +219,7 @@ const onSwitchPage = (page) => {
                         height: 300px;
                     }
                     .Logo{
-                        height: 175px;
+                        height: 125px;
                     }
                 }
             }
