@@ -42,6 +42,7 @@ if (props.size) classnames += " " + props.size;
         font-variation-settings: "wdth" 100;
         font-size: 14px;
         transition: all .2s;
+        text-align: left;
 
         span{
             font-size: 12px;

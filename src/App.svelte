@@ -8,7 +8,6 @@ import Profile from "./pages/Profile.svelte";
 import Faq from "./pages/FAQ.svelte";
 import Contact from "./pages/Contact.svelte";
 import Shop from "./pages/Shop.svelte";
-import Favorites from "./pages/Favorites.svelte";
 import Cart from "./pages/Cart.svelte";
 import Product from "./pages/Product.svelte";
 import Admin from "./pages/Admin.svelte";
@@ -35,7 +34,6 @@ $effect(() => {
           console.log(err);
           if (
             props.tab === "cart" ||
-            props.tab === "favorites" ||
             props.tab === "profile"
           )
             navigate("/");
@@ -44,7 +42,6 @@ $effect(() => {
     } else {
       if (
         props.tab === "cart" ||
-        props.tab === "favorites" ||
         props.tab === "profile"
       )
         navigate("/");
@@ -109,12 +106,6 @@ $effect(() => {
         }
         if ($currentPage !== "admin") {
           setCurrentPage("admin");
-        }
-        break;
-      case "favorites":
-        if (props.id) navigate("/favorites");
-        if ($currentPage !== "favorites") {
-          setCurrentPage("favorites");
         }
         break;
       case "cart":
@@ -212,7 +203,6 @@ let url = "";
         {:else if $currentPage === "faq"} <Faq/>
         {:else if $currentPage === "admin"} <Admin id={props.id}/>
         {:else if $currentPage === "contact"} <Contact/>
-        {:else if $currentPage === "favorites"} <Favorites/>
         {:else if $currentPage === "cart"} <Cart/>
         {:else if $currentPage === "profile"} <Profile disconnect={disconnect}/>
         {/if}

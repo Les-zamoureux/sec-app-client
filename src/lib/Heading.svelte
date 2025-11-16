@@ -28,6 +28,7 @@ classname += props.center ? " center" : "";
         color: white;
         font-family: "Bungee", sans-serif;
         font-weight: 400;
+        text-align: left;
         font-style: normal;
 
         &.right{

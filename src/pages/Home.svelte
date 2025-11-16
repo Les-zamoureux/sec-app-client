@@ -19,14 +19,14 @@ const onSwitchPage = (page) => {
     <div class="HomeContainer">
         <div class="HomeContent">
             <div class="ContentItems">
-                <div class="ContentItem" onclick={()=>{onSwitchPage('shop')}}>
-                    <Heading size={'h2'}>{$t('nav.shop')}</Heading>
-                    <Body uppercase>{$t('home.shop')}</Body>
-                </div>
-                <div class="ContentItem" onclick={()=>{onSwitchPage('about')}}>
-                    <Heading size={'h2'}>{$t('nav.about')}</Heading>
-                    <Body uppercase>{$t('home.about')}</Body>
-                </div>
+                <button class="ContentItem" onclick={()=>{onSwitchPage('shop')}}>
+                    <Heading right size={'h2'}>{$t('nav.shop')}</Heading>
+                    <Body right uppercase>{$t('home.shop')}</Body>
+                </button>
+                <button class="ContentItem" onclick={()=>{onSwitchPage('about')}}>
+                    <Heading right size={'h2'}>{$t('nav.about')}</Heading>
+                    <Body right uppercase>{$t('home.about')}</Body>
+                </button>
             </div>
         </div>
         <div class="HomeContent">
@@ -39,14 +39,14 @@ const onSwitchPage = (page) => {
         </div>
         <div class="HomeContent">
             <div class="ContentItems right">
-                <div class="ContentItem" onclick={()=>{onSwitchPage('faq')}}>
-                    <Heading size={'h2'} right>{$t('nav.faq')}</Heading>
-                    <Body right uppercase>{$t('home.faq')}</Body>
-                </div>
-                <div class="ContentItem" onclick={()=>{onSwitchPage('contact')}}>
-                    <Heading size={'h2'} right>{$t('nav.contact')}</Heading>
-                    <Body right uppercase>{$t('home.contact')}</Body>
-                </div>
+                <button class="ContentItem" onclick={()=>{onSwitchPage('faq')}}>
+                    <Heading size={'h2'} left>{$t('nav.faq')}</Heading>
+                    <Body left uppercase>{$t('home.faq')}</Body>
+                </button>
+                <button class="ContentItem" onclick={()=>{onSwitchPage('contact')}}>
+                    <Heading size={'h2'} left>{$t('nav.contact')}</Heading>
+                    <Body left uppercase>{$t('home.contact')}</Body>
+                </button>
             </div>
         </div>
     </div>
@@ -103,13 +103,15 @@ const onSwitchPage = (page) => {
                     flex-direction: column;
                     
                     .ContentItem{
+                        background-color: transparent;
+                        border: none;
                         width: 200px;
                         cursor: pointer;
                         transition: all .2s ease-in-out;
 
                         &:hover{
                             transform: scale(1.05);
-                            filter: drop-shadow(0 0 50px rgb(10, 187, 25));
+                            filter: drop-shadow(0 0 50px #EA7AD5);
                         }
                     }
                 }

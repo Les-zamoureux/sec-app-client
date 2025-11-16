@@ -81,7 +81,6 @@ const onNavigate = (page, link) => {
         {/each}
         <div class="icons">
             {#if $logged}
-                <Button size={"small"} nude icon={$currentPage === "favorites" ? LikeIconPrimary : LikeIcon} iconHover={LikeIconPrimary} onClick={()=>{onNavigate("favorites", '/favorites')}}/>
                 <Button size={"small"} nude icon={$currentPage === "cart" ? CartIconPrimary : CartIcon} iconHover={CartIconPrimary} onClick={()=>{onNavigate("cart", '/cart')}}/>
                 <Button size={"small"} nude icon={$currentPage === "profile" ? ProfileIconPrimary : ProfileIcon} iconHover={ProfileIconPrimary} onClick={()=>{onNavigate("profile", '/profile')}}/>
             {:else}
@@ -121,7 +120,7 @@ const onNavigate = (page, link) => {
             }
 
             .Logo{
-                height: 80px;
+                height: 66px;
                 display: none;
                 background-color: transparent;
                 border: none;
@@ -163,6 +162,7 @@ const onNavigate = (page, link) => {
                 align-items: center;
                 justify-content: center;
                 top: 50%;
+                gap: 5px;
                 transform: translateY(-50%);
             }
 
@@ -186,7 +186,7 @@ const onNavigate = (page, link) => {
                 }
 
                 img{
-                    height: 90px;
+                    height: 66px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
