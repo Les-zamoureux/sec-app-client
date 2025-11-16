@@ -154,6 +154,8 @@ const onSwitchPage = (page) => {
 
             @media screen and (max-width:800px){
                 .HomeContent{
+                    margin-top: 0px;
+
                     .HomeBackground{
                         height: 500px;
                     }
@@ -165,6 +167,8 @@ const onSwitchPage = (page) => {
 
             @media screen and (max-width:550px){
                 .HomeContent{
+                    margin-top: 0px;
+
                     .HomeBackground{
                         height: 350px;
                     }
@@ -176,6 +180,8 @@ const onSwitchPage = (page) => {
 
             @media screen and (max-width:385px){
                 .HomeContent{
+                    margin-top: 0px;
+
                     .HomeBackground{
                         height: 300px;
                     }
@@ -187,6 +193,8 @@ const onSwitchPage = (page) => {
 
             @media screen and (max-height:850px) and (min-width:800px){
                 .HomeContent{
+                    margin-top: 0px;
+
                     .ContentItems{
                         .ContentItem{
                             display: none;
@@ -203,6 +211,7 @@ const onSwitchPage = (page) => {
 
             @media screen and (max-height:650px) and (min-width:550px){
                 .HomeContent{
+                    margin-top: 0px;
                     height: 100%;
                     .HomeBackground{
                         height: 350px;
@@ -215,6 +224,8 @@ const onSwitchPage = (page) => {
 
             @media screen and (max-height:500px){
                 .HomeContent{
+                    margin-top: 0px;
+
                     .HomeBackground{
                         height: 300px;
                     }

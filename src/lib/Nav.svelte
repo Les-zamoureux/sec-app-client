@@ -245,6 +245,7 @@ const onNavigate = (page, link) => {
                     
                     &.last{
                         border-bottom: 2px solid var(--neutral500);
+                        margin-bottom: 100px;
                     }
 
                     &.logo{
