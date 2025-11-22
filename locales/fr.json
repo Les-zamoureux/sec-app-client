@@ -62,6 +62,10 @@
     "logs": "Logs"
   },
 
+  "about":{
+    "slogan" : "Des bonbons par tout le monde, pour tout le monde"
+  },
+
   "faq":{
     "slogan":"Vos questions ont des réponses !"
   },

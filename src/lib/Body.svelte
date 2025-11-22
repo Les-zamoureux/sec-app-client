@@ -37,12 +37,13 @@ if (props.size) classnames += " " + props.size;
     .Body{
         color: white;
         font-family: "Noto Sans", sans-serif;
-        font-optical-sizing: auto;
+        // font-optical-sizing: auto;
         font-style: normal;
-        font-variation-settings: "wdth" 100;
+        // font-variation-settings: "wdth" 100;
         font-size: 14px;
         transition: all .2s;
         text-align: left;
+        white-space:pre-line;
 
         span{
             font-size: 12px;

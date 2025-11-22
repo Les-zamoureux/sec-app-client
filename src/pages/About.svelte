@@ -6,7 +6,7 @@ let props = $props();
 </script>
 
 <div class="AboutPage">
-    <Page title="nav.about">
+    <Page title="nav.about" slogan={'about.slogan'}>
 
     </Page>
 </div>

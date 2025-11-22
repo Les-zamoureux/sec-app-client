@@ -10,14 +10,14 @@ let open = $state(false)
 </script>
 
 <div class={"FoldableFAQ" + (open ? " opened" : "")}>
-    <div class="FoldableHeader">
+    <button class="FoldableHeader" onclick={()=>open = !open}>
         <div class="HeaderTitle">
             <Body size={"veryLarge"}>{$t(props.question)}</Body>
         </div>
-        <button class="HeaderButton" onclick={()=>open = !open}>
+        <div class="HeaderButton">
             <img src={ArrowIcon} alt={"Question arrow"}/>
-        </button>
-    </div>
+        </div>
+    </button>
     <div class="FoldableContent">
         <div class="Answer">
             <Body>{$t(props.answer)}</Body>
@@ -56,7 +56,10 @@ let open = $state(false)
             justify-content: space-between;
             align-items: center;
             padding: 25px 0;
-
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            
             .HeaderTitle{
                 width: calc(100% - 50px);
             }
@@ -68,9 +71,6 @@ let open = $state(false)
                 width: 26px;
                 height: 26px;
                 transition: transform .2s ease-in-out;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
 
                 img{
                     pointer-events: none;

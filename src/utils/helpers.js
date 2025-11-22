@@ -8,8 +8,6 @@ const timeElapsed = (inputDate) => {
   const date = new Date(inputDate);
   const diffInMilliseconds = today - date;
 
-  console.log(diffInMilliseconds);
-
   const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
 
   if (diffInSeconds < 60) {
