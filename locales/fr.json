@@ -63,7 +63,28 @@
   },
 
   "about":{
-    "slogan" : "Des bonbons par tout le monde, pour tout le monde"
+    "slogan" : "Des bonbons par tout le monde, pour tout le monde",
+
+    "project-1":"MySweet, c'est quoi ?",
+
+    "project-1-1":"MySweet est un projet réalisé dans le cadre du module Sécurité Applicative de ma formation d'ingénieur par apprentissage au sein de l'école des Mines d'Ales. Le but était de réaliser une application web sécurisée composée de 4 services :",
+    "project-1-2-1":"Un client web sous la forme de site internet",
+    "project-1-2-2":"Une partie IHM pour que des comptes administrateurs puissent interagir avec la base de données",
+    "project-1-2-3":"Une base de données",
+    "project-1-2-4":"Un serveur proposant une api permettant de communiquer entre les différents services",
+
+    "project-2":"Il fallait donc mettre en place ces différents services et y développer des mesures afin de garantir leur sécurité face aux différentes attaques possible.",
+
+    "project-3":"Ce projet a été réalisé par groupe de 2. Comme le choix du sujet était libre, nous avons décidé de développer un site e-commerce fictif de vente de bonbons. Ce choix visait à travailler sur un cas nécessitant une réelle réflexion autour de la sécurité des données et de la gestion des accès. Je précise qu'il s'agit d'un projet strictement académique, sans aucune visée commerciale ni promotionnelle. Tous les visuels ont été au préalable réalisés à l’aide de l’outils Figma. Toutes les fonctionnalités de l’application sont mises à disposition à l’exception de la commande des articles placés dans le panier.",
+
+    "project-4-1":"La version du projet qu'on a rendu, quant à elle, est composée de 3 parties :",
+    "project-4-2-1":"Le site web, réalisé en Svelte, dans lequel se trouve une gestion de compte, ainsi qu'un accès administrateur avec une interface différente permettant d'interagir avec la base de données (correspondant à la partie IHM demandée dans le sujet).",
+    "project-4-2-2":"Le serveur, réalisé en Go, dans lequel se trouve l'ensemble de nos routes d'api sécurisées par un système de token JWT, et ce, afin de restreindre l'accès en fonction des permitions de l'utilisateur.",
+    "project-4-2-3":"Une base de données, réalisée en PostgreSQL, permettant de stocker les données des utilisateur. Parmi ces données, l'email et le mot de passe de chaque utilisateur est haché pour plus de sécurité.",
+
+    "project-5":"Le projet est adminisitré par PNPM, une technologie permettant de réduire le nombre de dépendance sur chacun des sous projet, et de ce fait, réduire le risque de dépendance défectueuses. Des règles de sécurité ont été définis au niveau des mot de passe afin qu'ils soient assez sécurisé, et un Rate Limit a été mit en place pour éviter les attaques par brut forcing. Côté client, chacune des informations stockées dans le LocalStorage sont re vérifiées et corrigées si nécessaire à chaque appel de route. Ensuite, le token JWT généré à chaque connexion s'invalide au bout de 48 heures, obligeant ainsi les utilisateurs à saisir leur mot de passe de nouveau tous les deux jours. Enfin, chaque interaction avec un compte, de sa création à la modification du mot de passe, nécessite de cliquer sur un lien envoyé automatiquement par email à la suite de la demande. Cette mesure permet de garantir la véracité de l'email de l'utilisateur, et qu'il soit le seul à pouvoir modifier son profil.",
+
+    "project-6":"Ce projet à du être réalise en 3 semaines, et nous à permis d'acquérir beaucoup de compétences quant à la sécurité des applications et systèmes d'informations."
   },
 
   "faq":{

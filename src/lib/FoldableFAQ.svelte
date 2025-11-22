@@ -32,7 +32,6 @@ let open = $state(false)
         padding: 0 45px;
         display: flex;
         border-radius: 20px;
-        overflow-y: hidden;
         flex-direction: column;
 
         &.opened{
@@ -43,9 +42,8 @@ let open = $state(false)
             }
 
             .FoldableContent {
-                max-height: 500px;
+                max-height: 1000px;
                 opacity: 1;
-
                 border-top: 1px solid var(--neutral150);
             }
         }
@@ -82,6 +80,7 @@ let open = $state(false)
         .FoldableContent {
             width: 100%;
             max-height: 0;
+            box-sizing: border-box;
             opacity: 0;
             overflow: hidden;
             border-top: 1px solid var(--neutral150);
@@ -91,7 +90,7 @@ let open = $state(false)
                 opacity .35s ease;
             
             .Answer {
-                padding: 25px 0;
+                padding: 25px 0 40px 0;
             }
         }
     }

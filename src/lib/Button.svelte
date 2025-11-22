@@ -82,9 +82,9 @@ const onClickButton = () => {
                     width: 100%;
                 }
 
-                @media screen and (max-width:600px) {
-                    width: 100%;
-                }
+                // @media screen and (max-width:600px) {
+                //     width: 100%;
+                // }
             }
 
             img{
