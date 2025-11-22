@@ -62,11 +62,8 @@ const onTagClick = (tag) => {
 </script>
 
 <div class="ShopPage">
-    <Page title="nav.shop">
+    <Page title="nav.shop" slogan={"shop.slogan"}>
         <div class="ShopContainer">
-            <div class="ShopTitle">
-                <Heading size={'h6'}>{$t("shop.slogan")}</Heading>
-            </div>
             <div class="ShopContent">
                 <div class="ShopContentDescription">
                     <Body size={'large'} weight={'light'} uppercase>{$t("shop.popular-products")}</Body>
@@ -75,7 +72,7 @@ const onTagClick = (tag) => {
                     <List onItemClick={onNavigate} data={products && products.length > 0 ? products.filter((p) => p.star) : []}/>
                 </div>
             </div>
-            <div class="ShopContent" style="margin-bottom: 100px;">
+            <div class="ShopContent">
                 <div class="ShopContentTitle">
                     <Heading size={'h5'}>{$t("shop.products")}</Heading>
                 </div>

@@ -11,6 +11,9 @@ let props = $props();
         {#if props.title}
             <Heading size={'h0'}>{$t(props.title)}</Heading>
         {/if}
+        {#if props.slogan}
+            <Heading size={'h6'}>{$t(props.slogan)}</Heading>
+        {/if}
     </div>
     <div class={"PageContent"}>
         {@render props.children?.()}
@@ -34,7 +37,8 @@ let props = $props();
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 40px 0;
+            margin: 40px 0 100px 0;
+            max-width: 1500px;
             width: 80%;
             flex-direction: column;
         }
@@ -48,6 +52,10 @@ let props = $props();
 
         .PageHeader{
             width: 80%;
+            display: flex;
+            max-width: 1500px;
+            flex-direction: column;
+            gap: 20px;
         }
     }
 

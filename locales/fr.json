@@ -62,6 +62,14 @@
     "logs": "Logs"
   },
 
+  "faq":{
+    "slogan":"Vos questions ont des réponses !"
+  },
+
+  "contact":{
+    "slogan":"Si vous avez une question spécifique ou une suggestion"
+  },
+
   "admin": {
     "title": "Portail administrateur",
     "add-data": "Ajouter",

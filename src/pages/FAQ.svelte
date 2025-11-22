@@ -1,12 +1,16 @@
 <script>
 import Page from "../lib/Page.svelte";
-
-let props = $props();
+import faq from "../data/faq";
+import FoldableFAQ from "../lib/FoldableFAQ.svelte";
 </script>
 
 <div class="FAQPage">
-    <Page title="nav.faq">
-
+    <Page title="nav.faq" slogan="faq.slogan">
+        <div class="FaqContainer">
+            {#each faq as question}
+                <FoldableFAQ {...question}/>
+            {/each}
+        </div>
     </Page>
 </div>
 
@@ -14,5 +18,12 @@ let props = $props();
     .FAQPage{
         width: 100%;
         height: 100%;
+        
+        .FaqContainer{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
     }
 </style>

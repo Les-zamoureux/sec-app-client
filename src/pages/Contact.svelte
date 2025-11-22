@@ -5,7 +5,7 @@ let props = $props();
 </script>
 
 <div class="ContactPage">
-    <Page title="nav.contact">
+    <Page title="nav.contact" slogan={"contact.slogan"}>
 
     </Page>
 </div>
