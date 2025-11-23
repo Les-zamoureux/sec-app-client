@@ -92,7 +92,39 @@
   },
 
   "contact":{
-    "slogan":"Si vous avez une question spécifique ou une suggestion"
+    "slogan":"Si vous avez une question spécifique ou une suggestion",
+
+    "coordinate":{
+      "title":"Nos coordonnées",
+      "email":"contact@mysweet.com",
+      "phone":"+33 8 08 08 08 08",
+      "place":"12 rue des bonbons, 75003 Paris"
+    },
+
+    "form":{
+      "title":"Envoyez-nous un message",
+      "error":"Cette fonctionnalité est indisponible car MySweet est un site fictif",
+
+      "name":{
+        "title":"Votre nom :",
+        "placeholder":"Exemple : Dupont"
+      },
+
+      "email":{
+        "title":"Votre adresse mail :",
+        "placeholder":"Exemple : antoine.dupont@gmail.com"
+      },
+
+      "object":{
+        "title":"Votre objet :",
+        "placeholder":"Exemple : Demande d'assistance"
+      },
+
+      "message":{
+        "title":"Votre message :",
+        "placeholder":"Exemple : J'ai besoin d'aide concernant..."
+      }
+    }
   },
 
   "admin": {

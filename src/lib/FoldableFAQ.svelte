@@ -25,7 +25,7 @@ let open = $state(false)
     </div>
 </div>
 
-<style>
+<style  lang="scss">
     .FoldableFAQ{
         background-color: var(--neutral100);
         width: 100%;

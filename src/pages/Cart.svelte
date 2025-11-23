@@ -10,7 +10,7 @@ let props = $props();
     </Page>
 </div>
 
-<style>
+<style lang="scss">
     .CartPage{
         width: 100%;
         height: 100%;

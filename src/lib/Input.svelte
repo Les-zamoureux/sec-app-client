@@ -90,6 +90,32 @@ const minus = () => {
                 height: 350px;
                 min-height: 350px;
                 max-height: 350px;
+
+                textarea{
+                    font-size: 16px;
+                    resize: none;
+                    font-family: "Noto Sans", sans-serif;
+                }
+
+                textarea::-webkit-scrollbar {
+                    border-bottom-right-radius: 19px;
+                    border-top-right-radius: 19px;
+                }
+
+                textarea::-webkit-scrollbar-thumb {
+                    background-color: var(--primary);
+                    border-radius: 20px;
+                }
+
+                textarea::-webkit-scrollbar-track {
+                    background-color: var(--neutral500);
+                    border-bottom-right-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
+
+                textarea::-webkit-scrollbar-thumb:hover {
+                    background-color: var(--primary);
+                }
             }
 
             &.focus{

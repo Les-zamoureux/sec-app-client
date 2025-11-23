@@ -14,7 +14,7 @@ import FoldableFAQ from "../lib/FoldableFAQ.svelte";
     </Page>
 </div>
 
-<style>
+<style lang="scss">
     .FAQPage{
         width: 100%;
         height: 100%;
